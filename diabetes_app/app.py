@@ -676,6 +676,8 @@ def dataset_stats():
 
 
 if __name__ == '__main__':
+    import os
+
     # Auto-build DB if missing
     if not os.path.exists(DB_PATH):
         print("🔨 Building database for first time…")
@@ -684,9 +686,11 @@ if __name__ == '__main__':
 
     fc = query_db("SELECT COUNT(*) n FROM foods", one=True)['n']
     qc = query_db("SELECT COUNT(*) n FROM chatbot_qa", one=True)['n']
+
     print(f"\n🩺 DiabetesMeal AI v4.0 — Ready!")
     print(f"   📊 Patients : {risk_model.ds['total']:,}")
     print(f"   🤖 Accuracy : {risk_model.accuracy['ensemble']}%")
     print(f"   🍛 Foods    : {fc}  |  💬 Q&A: {qc}")
-    print(f"\n🌐  http://127.0.0.1:5000\n")
-    app.run(host="0.0.0.0", port=10000)
+
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
