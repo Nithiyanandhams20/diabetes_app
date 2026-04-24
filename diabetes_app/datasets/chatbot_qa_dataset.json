@@ -1,0 +1,1014 @@
+{
+  "description": "Diabetes Chatbot Q&A Training Dataset",
+  "total": 112,
+  "qa_pairs": [
+    {
+      "id": 1,
+      "intent": "greeting",
+      "question": "Hello",
+      "answer": "Hi! I'm DiabetesMeal AI. I can help with meal plans, food nutrition, and diabetes management. What would you like to know?",
+      "tags": "greeting",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 2,
+      "intent": "greeting",
+      "question": "Hi there",
+      "answer": "Hello! Ask me about South Indian foods for diabetes, meal plans, or nutrition calculations.",
+      "tags": "greeting",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 3,
+      "intent": "greeting",
+      "question": "Good morning",
+      "answer": "Good morning! Ready to plan your diabetes-friendly breakfast? Ask me anything!",
+      "tags": "greeting",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 4,
+      "intent": "greeting",
+      "question": "Vanakkam",
+      "answer": "Vanakkam! \u0ba8\u0bbe\u0ba9\u0bcd DiabetesMeal AI. \u0ba8\u0bc0\u0bb0\u0bbf\u0bb4\u0bbf\u0bb5\u0bc1 \u0ba8\u0bcb\u0baf\u0bcd \u0bae\u0bb1\u0bcd\u0bb1\u0bc1\u0bae\u0bcd \u0b8a\u0b9f\u0bcd\u0b9f\u0b9a\u0bcd\u0b9a\u0ba4\u0bcd\u0ba4\u0bc1 \u0baa\u0bb1\u0bcd\u0bb1\u0bbf\u0baf \u0b95\u0bc7\u0bb3\u0bcd\u0bb5\u0bbf\u0b95\u0bb3\u0bc1\u0b95\u0bcd\u0b95\u0bc1 \u0baa\u0ba4\u0bbf\u0bb2\u0bcd \u0b9a\u0bca\u0bb2\u0bcd\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd.",
+      "tags": "greeting",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 5,
+      "intent": "greeting",
+      "question": "Hey",
+      "answer": "Hey! I'm here to help with diabetes nutrition and South Indian meal planning. What's on your mind?",
+      "tags": "greeting",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 6,
+      "intent": "greeting",
+      "question": "Good evening",
+      "answer": "Good evening! Planning dinner? Let me suggest diabetes-friendly South Indian dinner options.",
+      "tags": "greeting",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 7,
+      "intent": "greeting",
+      "question": "Who are you",
+      "answer": "I'm DiabetesMeal AI \u2014 an AI assistant trained on 100,000+ patient records to help diabetics with nutrition and meal planning.",
+      "tags": "greeting",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 8,
+      "intent": "greeting",
+      "question": "What can you do",
+      "answer": "I can: predict food nutrition, suggest personalized meal plans, identify food from photos, calculate meal totals, and answer diabetes questions.",
+      "tags": "greeting",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 9,
+      "intent": "greeting",
+      "question": "Help me",
+      "answer": "Sure! Tell me: your diabetes type (Type 1 or Type 2), your current glucose level, and what you'd like help with \u2014 meals, snacks, or nutrition info.",
+      "tags": "greeting",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 10,
+      "intent": "greeting",
+      "question": "How are you",
+      "answer": "I'm ready to help! Ask me about any South Indian food's nutrition, get a meal plan, or calculate what you just ate.",
+      "tags": "greeting",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 11,
+      "intent": "food_nutrition",
+      "question": "Is idli good for diabetes?",
+      "answer": "Yes! Idli is one of the best breakfast options for diabetics. It's steamed (no oil), fermented (lower GI), has only 39 calories per piece, and 8g carbs. 2-3 idlis with sambar is an ideal diabetic breakfast.",
+      "tags": "food,idli,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 12,
+      "intent": "food_nutrition",
+      "question": "How many idlis can a diabetic eat?",
+      "answer": "A Type 2 diabetic can safely eat 2-3 idlis per meal. Each idli has ~8g carbs and 39 calories. Pair with sambar (not chutney only) for protein and fiber to slow glucose absorption.",
+      "tags": "food,idli,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 13,
+      "intent": "food_nutrition",
+      "question": "Is dosa OK for diabetes?",
+      "answer": "Plain dosa (without ghee) is moderate for diabetics \u2014 GI 57. Prefer ragi dosa (GI 44) which is better. Avoid masala dosa (potatoes spike glucose). Have 1 dosa max with plenty of sambar.",
+      "tags": "food,dosa,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 14,
+      "intent": "food_nutrition",
+      "question": "Why is ragi best for diabetics?",
+      "answer": "Ragi (finger millet) has GI of 44-54, very high fiber (3-4g/100g), and contains polyphenols that slow starch digestion. Studies show ragi consumption reduces blood glucose 25-30% compared to white rice.",
+      "tags": "food,ragi,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 15,
+      "intent": "food_nutrition",
+      "question": "Tell me about ragi dosa nutrition",
+      "answer": "Ragi Dosa (per dosa ~80g): 130 calories, 22g carbs, 4g protein, 3g fiber. GI: Low (44). Glucose impact: 22g. It's the healthiest dosa variant for diabetics \u2014 30% lower glucose impact than regular dosa.",
+      "tags": "food,ragi_dosa,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 16,
+      "intent": "food_nutrition",
+      "question": "What is the GI of sambar?",
+      "answer": "Sambar has a very low GI of 40. Per 200ml serving: 100 calories, 16g carbs, 6g protein, 6g fiber. The combination of lentils and vegetables makes it excellent for diabetics. Always have it with idli or roti.",
+      "tags": "food,sambar,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 17,
+      "intent": "food_nutrition",
+      "question": "How does bitter gourd help diabetes?",
+      "answer": "Bitter gourd (karela/pavakkai) contains charantin, polypeptide-p, and vicine \u2014 compounds that act like insulin. Clinical studies show 20-25% reduction in blood glucose. Best consumed as juice (100ml morning) or stir-fry daily.",
+      "tags": "food,bitter_gourd,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 18,
+      "intent": "food_nutrition",
+      "question": "Is drumstick (murungakkai) good for diabetes?",
+      "answer": "Yes! Drumstick contains isothiocyanates that improve insulin secretion. It also has high fiber (3g/100g), very low calories (37 kcal), and zinc which is essential for insulin storage. Have drumstick sambar 3-4 times a week.",
+      "tags": "food,drumstick,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 19,
+      "intent": "food_nutrition",
+      "question": "How to make bitter gourd juice for diabetes?",
+      "answer": "Juice recipe: Take 2 medium bitter gourds, remove seeds, blend with 100ml water. Drink on empty stomach every morning. Can add a pinch of turmeric. Studies show 4-6 weeks of daily use reduces fasting glucose 15-20%.",
+      "tags": "food,bitter_gourd,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 20,
+      "intent": "food_nutrition",
+      "question": "Is pongal good for diabetes?",
+      "answer": "Plain (ven) pongal has GI 56 \u2014 moderate. Per 200g: 320 calories, 56g carbs. For diabetics, limit to 150g portion. Sweet pongal (sakkarai pongal) should be completely avoided \u2014 very high sugar content.",
+      "tags": "food,pongal,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 21,
+      "intent": "food_nutrition",
+      "question": "Nutrition info for upma",
+      "answer": "Upma (200g serving): 340 calories, 56g carbs, 8g protein, 10g fat, 6g fiber. GI: Medium (55). For diabetics \u2014 add more vegetables (onion, tomato, carrot) to increase fiber and reduce GI. Limit to 150g portion.",
+      "tags": "food,upma,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 22,
+      "intent": "food_nutrition",
+      "question": "Is idiyappam good for diabetes?",
+      "answer": "Idiyappam (rice noodles) has high GI (60) and very low fiber. Not ideal for Type 2 diabetics. If having, limit to 2-3 strings and always pair with vegetable curry or egg. Ragi idiyappam is a better alternative.",
+      "tags": "food,idiyappam,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 23,
+      "intent": "food_nutrition",
+      "question": "Can diabetics eat appam?",
+      "answer": "Plain appam (without sweet topping) has GI ~56. One appam has ~80g carbs \u2014 quite high. Limit to 1 appam and pair with vegetable or egg curry, not sweetened coconut milk. Not recommended for poorly controlled diabetes.",
+      "tags": "food,appam,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 24,
+      "intent": "food_nutrition",
+      "question": "Is avial healthy for diabetics?",
+      "answer": "Absolutely! Avial is excellent \u2014 mixed vegetables (raw banana, yam, drumstick, carrot, beans) in coconut and yogurt. GI 35 (low), 120 calories, 5g fiber per 150g. It's one of the healthiest traditional Kerala dishes for diabetics.",
+      "tags": "food,avial,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 25,
+      "intent": "food_nutrition",
+      "question": "Benefits of mor kuzhambu for diabetes?",
+      "answer": "Mor kuzhambu (buttermilk curry) is probiotic, low calorie (65 kcal/150ml), and has very low GI (28). Probiotics in buttermilk improve insulin sensitivity. The spices (cumin, curry leaves, ginger) also have anti-diabetic properties.",
+      "tags": "food,mor_kuzhambu,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 26,
+      "intent": "food_nutrition",
+      "question": "Is curd rice OK for diabetes?",
+      "answer": "Curd rice has medium GI (52) \u2014 acceptable in small portions (150g max). The curd provides probiotics which help blood sugar regulation. Avoid adding sugar. Adding pomegranate seeds boosts antioxidants.",
+      "tags": "food,curd_rice,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 27,
+      "intent": "food_nutrition",
+      "question": "Tell me about pesarattu for diabetes",
+      "answer": "Pesarattu (green moong crepe) is excellent for diabetics \u2014 low GI (42), high protein (8g/crepe), and high fiber (4g). Green moong has the lowest GI among all dals. 2 pesarattu with sambar = ideal breakfast for Type 2.",
+      "tags": "food,pesarattu,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 28,
+      "intent": "food_nutrition",
+      "question": "Is coconut chutney OK for diabetics?",
+      "answer": "Coconut chutney in moderate amounts is fine. 30g serving: 69 calories, healthy fats, fiber. The healthy fats in coconut slow glucose absorption. Avoid sweetened versions. Fresh green chutney is better than fried versions.",
+      "tags": "food,coconut_chutney,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 29,
+      "intent": "food_nutrition",
+      "question": "Is kozhukattai good for diabetes?",
+      "answer": "Plain steamed kozhukattai (rice dumplings) \u2014 moderate for diabetes. GI ~58, 180 cal/piece. Stick to 1-2 pieces. Avoid sweet kozhukattai (kolukattai with jaggery). Better alternative: make it with ragi flour.",
+      "tags": "food,kozhukattai,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 30,
+      "intent": "food_nutrition",
+      "question": "Nutrition of thoran",
+      "answer": "Thoran (Kerala dry stir-fry): ~110 calories, 10g carbs, 5g fiber, 7g fat per 100g. Very low GI (32). Excellent side dish for diabetics \u2014 the grated coconut provides satiety and the vegetables provide fiber and micronutrients.",
+      "tags": "food,thoran,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 31,
+      "intent": "food_nutrition",
+      "question": "Is fish good for diabetics?",
+      "answer": "Yes! Fish is excellent for diabetics \u2014 high protein (22g/150g), omega-3 fatty acids reduce inflammation and insulin resistance, very low GI. South Indian fish curry with brown rice is an ideal diabetic lunch. Aim for fish 3-4 times a week.",
+      "tags": "food,fish_curry,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 32,
+      "intent": "food_nutrition",
+      "question": "Is Chettinad chicken OK for diabetes?",
+      "answer": "Yes \u2014 Chettinad chicken is good for diabetics! High protein (25g/150g), low carbs (5g), low GI. The spices (pepper, kalpasi, marathi mokku) have anti-inflammatory properties. Avoid excess oil. Pair with brown rice or roti.",
+      "tags": "food,chettinad_chicken,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 33,
+      "intent": "food_nutrition",
+      "question": "Benefits of rasam for diabetes",
+      "answer": "Rasam is one of the best foods for diabetics \u2014 only 30 calories/200ml, very low GI (30), and the black pepper, cumin, and tamarind improve digestion and insulin sensitivity. Have a glass before or after meals.",
+      "tags": "food,rasam,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 34,
+      "intent": "food_nutrition",
+      "question": "Is keerai (greens) good for diabetes?",
+      "answer": "Keerai (spinach/amaranth/drumstick leaves) is superb for diabetics \u2014 very low calories (23-35 kcal), high fiber, rich in magnesium (improves insulin sensitivity), iron, and folate. Have any form of keerai daily.",
+      "tags": "food,keerai,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 35,
+      "intent": "food_nutrition",
+      "question": "How does vendakkai (okra) help diabetes?",
+      "answer": "Okra contains soluble fiber that slows glucose absorption, and compounds that inhibit the enzyme that breaks down starch. Studies show daily okra consumption reduces post-meal glucose spikes by 20%. Best eaten stir-fried or added to sambar.",
+      "tags": "food,vendakkai,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 36,
+      "intent": "blood_sugar_management",
+      "question": "My blood sugar is 250, what should I eat?",
+      "answer": "At 250 mg/dL, avoid all carbohydrates immediately. Drink 3 glasses of water. Safe foods now: bitter gourd juice, cucumber, rasam, buttermilk, boiled egg. Walk for 20 minutes. Take your medication. If stays above 300 mg/dL, contact your doctor.",
+      "tags": "glucose,management",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 37,
+      "intent": "blood_sugar_management",
+      "question": "What foods quickly lower blood sugar?",
+      "answer": "Foods that help lower blood sugar: 1) Bitter gourd juice, 2) Fenugreek water (soak seeds overnight, drink morning), 3) Cinnamon tea, 4) Apple cider vinegar (1 tbsp in water), 5) Walking 15 min. These are supportive \u2014 not replacements for medication.",
+      "tags": "glucose,management",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 38,
+      "intent": "blood_sugar_management",
+      "question": "My glucose is 180 after breakfast, is that OK?",
+      "answer": "180 mg/dL at 2 hours post-meal is the upper acceptable limit. Ideally target <140 mg/dL at 2 hours. To improve: switch to ragi dosa/ragi porridge, add bitter gourd to your morning, and walk 15 min after breakfast.",
+      "tags": "glucose,management",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 39,
+      "intent": "blood_sugar_management",
+      "question": "What is a normal blood sugar level?",
+      "answer": "Normal ranges: Fasting: 70-100 mg/dL (normal), 100-125 (pre-diabetic), 126+ (diabetic). Post-meal (2hr): <140 (normal), 140-199 (pre-diabetic), 200+ (diabetic). HbA1c: <5.7% (normal), 5.7-6.4% (pre-diabetic), 6.5%+ (diabetic).",
+      "tags": "glucose,management",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 40,
+      "intent": "blood_sugar_management",
+      "question": "How to control blood sugar through diet?",
+      "answer": "5 key diet rules: 1) Eat low GI foods (ragi, dal, vegetables), 2) Never skip meals, 3) Fill half plate with non-starchy vegetables, 4) Limit rice/roti portions, 5) Avoid sugar, fried foods, and fruit juices. Walk 15 min after each meal.",
+      "tags": "glucose,management",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 41,
+      "intent": "blood_sugar_management",
+      "question": "What causes blood sugar spikes?",
+      "answer": "Main causes: 1) Eating high GI foods (white rice, bread, sweets), 2) Large meal portions, 3) Skipping meals then overeating, 4) Stress and poor sleep, 5) Physical inactivity, 6) Missing medication, 7) Fruit juices instead of whole fruits.",
+      "tags": "glucose,management",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 42,
+      "intent": "blood_sugar_management",
+      "question": "How does exercise reduce blood sugar?",
+      "answer": "Exercise works like insulin \u2014 muscle cells absorb glucose during activity without needing insulin. A 15-30 min walk after meals drops blood sugar 20-40 mg/dL. Even standing/light movement helps. Aim for 150 min moderate exercise weekly.",
+      "tags": "glucose,management",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 43,
+      "intent": "blood_sugar_management",
+      "question": "What should I eat if my sugar is low?",
+      "answer": "For low blood sugar (<70 mg/dL): Immediately eat 15g fast carbs: 4 glucose tablets OR half cup fruit juice OR 3 tsp sugar in water OR 2 tbsp raisins. Wait 15 minutes. Recheck. If still low, repeat. Never skip treatment \u2014 hypoglycemia is dangerous.",
+      "tags": "glucose,management",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 44,
+      "intent": "blood_sugar_management",
+      "question": "How to prevent blood sugar spikes after meals?",
+      "answer": "Strategies: 1) Eat vegetables first, then protein, then carbs, 2) Choose ragi/brown rice over white rice, 3) Add fiber (dal, vegetables) to every meal, 4) Eat slowly (20+ minutes), 5) Walk 10-15 min after eating, 6) Drink water with meals.",
+      "tags": "glucose,management",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 45,
+      "intent": "blood_sugar_management",
+      "question": "Is it OK to eat rice with diabetes?",
+      "answer": "White rice (GI 72) is high GI \u2014 limit to 1/2 cup cooked. Better options: Brown rice (GI 50), Ragi (GI 44). If eating white rice: serve with lots of sambar/dal (adds fiber), and take a post-meal walk. Never eat rice alone without vegetables/protein.",
+      "tags": "glucose,management",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 46,
+      "intent": "diabetes_types",
+      "question": "What is the difference between Type 1 and Type 2 diabetes?",
+      "answer": "Type 1: Autoimmune \u2014 body destroys insulin-producing cells. Requires insulin always. Usually starts in childhood. Type 2: Insulin resistance \u2014 cells don't respond to insulin. Often diet-related. Can be managed with diet + medication. Diet approach differs significantly.",
+      "tags": "type1,type2,education",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 47,
+      "intent": "diabetes_types",
+      "question": "Which foods are best for Type 1 diabetes?",
+      "answer": "Type 1 focus is on consistent carb counting and insulin-to-carb ratio. Best foods: idli (8g carbs each \u2014 easy to count), ragi dosa (22g), moong dal (18g/100g). Avoid foods with unpredictable GI. Consistency matters more than GI for Type 1.",
+      "tags": "type1,type2,education",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 48,
+      "intent": "diabetes_types",
+      "question": "Which foods are best for Type 2 diabetes?",
+      "answer": "Type 2 focus is on low GI foods to reduce insulin resistance. Best: ragi dosa, bitter gourd, okra, drumstick sambar, pesarattu, all lentils/dals, non-starchy vegetables. Weight loss through diet can sometimes reverse Type 2 entirely.",
+      "tags": "type1,type2,education",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 49,
+      "intent": "diabetes_types",
+      "question": "Can Type 2 diabetes be reversed?",
+      "answer": "Yes! Type 2 diabetes can be put into remission through significant weight loss (10-15kg), very low carbohydrate diet, and regular exercise. Studies show 50% of newly diagnosed Type 2 patients achieve normal blood sugar within 1 year with intensive lifestyle changes.",
+      "tags": "type1,type2,education",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 50,
+      "intent": "diabetes_types",
+      "question": "What is pre-diabetes?",
+      "answer": "Pre-diabetes: Fasting glucose 100-125 mg/dL OR HbA1c 5.7-6.4%. At this stage, lifestyle changes can PREVENT progression to Type 2. Key interventions: lose 5-7% body weight, 150 min exercise per week, reduce processed foods and sugar intake.",
+      "tags": "type1,type2,education",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 51,
+      "intent": "diabetes_types",
+      "question": "Is diabetes genetic?",
+      "answer": "Type 1: Stronger genetic component (HLA genes). Risk 5-10% if parent has it. Type 2: Also genetic but lifestyle is the dominant trigger. Having a parent with Type 2 doubles your risk \u2014 but healthy diet and exercise can prevent it even with genetic risk.",
+      "tags": "type1,type2,education",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 52,
+      "intent": "diabetes_types",
+      "question": "What is gestational diabetes?",
+      "answer": "Gestational diabetes occurs during pregnancy when hormones cause insulin resistance. Usually disappears after delivery. Diet management: small frequent meals, avoid refined carbs, increase protein and fiber. All foods same as Type 2. Requires medical monitoring.",
+      "tags": "type1,type2,education",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 53,
+      "intent": "meal_planning",
+      "question": "What is the best breakfast for a Type 2 diabetic?",
+      "answer": "Best Type 2 breakfasts: 1) Ragi dosa + sambar (best - lowest GI), 2) Idli (2-3) + sambar + coconut chutney, 3) Pesarattu + sambar, 4) Oats upma with vegetables, 5) Moong dal chilla. Always pair with protein (sambar/dal/egg) to slow glucose absorption.",
+      "tags": "meal,planning,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 54,
+      "intent": "meal_planning",
+      "question": "Give me a full day meal plan for Type 2 diabetes",
+      "answer": "Breakfast: 2 ragi dosa + sambar. Mid-morning: Buttermilk. Lunch: 1 small cup brown rice + drumstick sambar + thoran + curd. Evening snack: Handful roasted chana + green tea. Dinner: 2 roti + palak dal + cucumber salad. Target: 1500-1800 calories, <200g carbs.",
+      "tags": "meal,planning,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 55,
+      "intent": "meal_planning",
+      "question": "What should a Type 1 diabetic eat for lunch?",
+      "answer": "Type 1 lunch: 2 chapati (40g carbs) + dal tadka (15g carbs) + sabzi + salad. Total ~55-60g carbs per meal is manageable. Consistency is key \u2014 eating similar carb amounts daily helps insulin dosing. Avoid unpredictable foods like buffets.",
+      "tags": "meal,planning,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 56,
+      "intent": "meal_planning",
+      "question": "What South Indian dinner is good for diabetes?",
+      "answer": "Best South Indian dinners: 1) Rasam + roti + thoran (light, low GI), 2) Fish curry + 1/2 cup brown rice + keerai, 3) Mor kuzhambu + roti + vegetable curry, 4) Khichdi + curd, 5) Dal tadka + roti. Keep dinner lighter than lunch.",
+      "tags": "meal,planning,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 57,
+      "intent": "meal_planning",
+      "question": "What should I eat before bed if I have diabetes?",
+      "answer": "Small bedtime snack if needed: 15g complex carbs + protein. Options: 1 small apple + 5 almonds, OR small bowl curd, OR 1 small roti + dal, OR handful roasted chana. Avoid sweet snacks before bed \u2014 they cause morning high glucose.",
+      "tags": "meal,planning,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 58,
+      "intent": "meal_planning",
+      "question": "What to eat when glucose is high?",
+      "answer": "For high glucose (>180): Choose bitter gourd stir-fry, cucumber, rasam, plain curd, roasted chana, boiled egg, any leafy green vegetables. Drink 3 glasses water. Avoid all high carb foods until glucose normalizes. Walk for 20 minutes.",
+      "tags": "meal,planning,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 59,
+      "intent": "meal_planning",
+      "question": "Can I eat rice if I have diabetes?",
+      "answer": "You can eat rice in small portions: 1/2 cup cooked (about 100g). Brown rice is better (GI 50 vs 72). Add lots of sambar/vegetables to the meal. Never eat rice alone \u2014 always with protein and vegetables. Prefer ragi or brown rice over white rice.",
+      "tags": "meal,planning,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 60,
+      "intent": "meal_planning",
+      "question": "What is the best South Indian diet for diabetes?",
+      "answer": "Best South Indian diabetic diet: Morning: Ragi porridge or idli-sambar. Lunch: Brown rice + sambar + thoran + bitter gourd fry. Dinner: Roti + dal + vegetable. Snacks: Roasted chana, buttermilk, fruit. This diet is naturally low GI, high fiber, and culturally appropriate.",
+      "tags": "meal,planning,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 61,
+      "intent": "meal_planning",
+      "question": "Give me a weekly meal plan for Type 2",
+      "answer": "Day 1: Ragi dosa/Rajma rice/Fish curry. Day 2: Idli-sambar/Brown rice+avial/Dal-roti. Day 3: Pesarattu/Drumstick sambar rice/Khichdi. Day 4: Oats upma/Chana masala roti/Mor kuzhambu. Day 5: Ragi porridge/Palak paneer roti/Rasam roti. Rotate for variety.",
+      "tags": "meal,planning,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 62,
+      "intent": "meal_planning",
+      "question": "How many meals per day for diabetes?",
+      "answer": "Diabetics should eat 4-6 small meals per day (not 2-3 large meals). Schedule: 7am Breakfast, 10am snack, 1pm Lunch, 4pm snack, 7pm Dinner, optional 9pm mini-snack. Small frequent meals prevent glucose spikes and maintain steady energy levels.",
+      "tags": "meal,planning,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 63,
+      "intent": "glycemic_index",
+      "question": "What is glycemic index?",
+      "answer": "Glycemic Index (GI) measures how fast a food raises blood glucose on a scale of 0-100. Low GI (\u226455): slow release \u2014 safe. Medium GI (56-69): moderate rise. High GI (\u226570): rapid spike \u2014 avoid. Diabetics should focus on low and medium GI foods.",
+      "tags": "gi,glycemic_index",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 64,
+      "intent": "glycemic_index",
+      "question": "List low GI South Indian foods",
+      "answer": "Top Low GI South Indian foods: Ragi (GI 44), Sambar (40), Bitter gourd (14), Drumstick (20), Rasam (30), Pesarattu (42), Ragi dosa (44), Buttermilk (25), All dals (28-34), Avial (35), Vendakkai/okra (28), Keerai (15-20).",
+      "tags": "gi,glycemic_index",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 65,
+      "intent": "glycemic_index",
+      "question": "What South Indian foods have high GI?",
+      "answer": "High GI South Indian foods to AVOID: White rice (72), Idiyappam (60+), Payasam (75), Kesari (80), Sweet Pongal (78), Tamarind rice (67), Coconut rice (66), Lemon rice (65), Jangiri/Jalebi (90), Gulab Jamun (86). These spike blood sugar rapidly.",
+      "tags": "gi,glycemic_index",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 66,
+      "intent": "glycemic_index",
+      "question": "Is brown rice low GI?",
+      "answer": "Brown rice has GI of 50 \u2014 medium (better than white rice at 72). The outer bran layer slows digestion. For diabetics, 1/2 cup cooked brown rice with plenty of dal and vegetables is acceptable. Ragi is even better at GI 44.",
+      "tags": "gi,glycemic_index",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 67,
+      "intent": "glycemic_index",
+      "question": "What is glycemic load?",
+      "answer": "Glycemic Load (GL) considers both GI AND quantity. GL = (GI \u00d7 carbs in portion) \u00f7 100. Low GL (<10), Medium (11-19), High (>20). Example: Watermelon has high GI (72) but low GL (4) because it's mostly water. GL is more practical than GI alone.",
+      "tags": "gi,glycemic_index",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 68,
+      "intent": "glycemic_index",
+      "question": "Which grain has the lowest GI for Indians?",
+      "answer": "Grain GI ranking (lowest to highest): Ragi/finger millet (44) \u2192 Barley (28) \u2192 Oats (49) \u2192 Brown rice (50) \u2192 Whole wheat/roti (52) \u2192 Maize (52) \u2192 White rice (72) \u2192 Maida/refined flour (70-80). Ragi is the best grain for Indian diabetics.",
+      "tags": "gi,glycemic_index",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 69,
+      "intent": "hba1c",
+      "question": "What is HbA1c and what is normal?",
+      "answer": "HbA1c (Glycated Hemoglobin) shows average blood sugar over 3 months. Normal: <5.7%. Pre-diabetic: 5.7-6.4%. Diabetic: \u22656.5%. Target for diabetics: <7% (well-controlled). Below 6% is excellent. Test every 3 months.",
+      "tags": "hba1c,monitoring",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 70,
+      "intent": "hba1c",
+      "question": "How to reduce HbA1c through diet?",
+      "answer": "To reduce HbA1c: 1) Replace white rice with ragi/brown rice, 2) Eat bitter gourd, drumstick, okra daily, 3) Include all dals (very low GI), 4) Eliminate sugar and sweets completely, 5) Add 30 min daily walking. Consistent changes reduce HbA1c 1-1.5% in 3 months.",
+      "tags": "hba1c,monitoring",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 71,
+      "intent": "hba1c",
+      "question": "My HbA1c is 8.5%, how serious is that?",
+      "answer": "HbA1c 8.5% is poorly controlled diabetes (target <7%). This indicates average glucose of ~197 mg/dL. At this level: strictly follow low GI diet, walk 30 min daily, never skip medication. Work with your doctor to adjust medication. With diet changes, you can reduce 1-1.5% in 3 months.",
+      "tags": "hba1c,monitoring",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 72,
+      "intent": "hba1c",
+      "question": "What foods reduce HbA1c?",
+      "answer": "Foods proven to reduce HbA1c: 1) Fenugreek (methi) \u2014 soak seeds, drink water, 2) Bitter gourd juice daily, 3) Cinnamon (1/2 tsp daily in tea), 4) All lentils/dals (consistently low GI), 5) Ragi products, 6) Amla (Indian gooseberry), 7) Jamun (Indian blackberry).",
+      "tags": "hba1c,monitoring",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 73,
+      "intent": "hba1c",
+      "question": "How often should I check my HbA1c?",
+      "answer": "Test HbA1c every 3 months if uncontrolled, every 6 months if well-controlled. Regular fasting glucose monitoring daily (or as doctor recommends). Post-meal glucose 2 hours after eating \u2014 this tells you how your diet is working.",
+      "tags": "hba1c,monitoring",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 74,
+      "intent": "lifestyle",
+      "question": "How does walking help diabetes?",
+      "answer": "Walking 15-30 min after meals is the single most effective lifestyle intervention. It drops post-meal glucose by 20-40 mg/dL. Muscles absorb glucose during activity without needing insulin. Aim for 150 min total per week (30 min \u00d7 5 days).",
+      "tags": "exercise,lifestyle,yoga",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 75,
+      "intent": "lifestyle",
+      "question": "Which yoga is best for diabetes?",
+      "answer": "Best yoga for diabetes: 1) Surya Namaskar (full body, morning), 2) Pranayama \u2014 Anulom Vilom (balances insulin), 3) Mandukasana (stimulates pancreas), 4) Vakrasana (massages pancreas), 5) Paschimottanasana (stimulates insulin production). Do 20-30 min daily.",
+      "tags": "exercise,lifestyle,yoga",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 76,
+      "intent": "lifestyle",
+      "question": "Does stress affect blood sugar?",
+      "answer": "Yes \u2014 stress hormones (cortisol and adrenaline) directly raise blood glucose even without eating. 1 hour of stress can raise glucose 20-40 mg/dL. Chronic stress = chronically elevated glucose. Manage: meditation, yoga, adequate sleep (7-8 hrs), regular meals.",
+      "tags": "exercise,lifestyle,yoga",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 77,
+      "intent": "lifestyle",
+      "question": "How does sleep affect diabetes?",
+      "answer": "Poor sleep (less than 6 hours) causes insulin resistance. Even one night of poor sleep can raise blood glucose 10-15%. Deep sleep is when insulin sensitivity resets. Target 7-8 hours. Sleep at consistent times. Avoid eating 2 hours before bed.",
+      "tags": "exercise,lifestyle,yoga",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 78,
+      "intent": "lifestyle",
+      "question": "What is the best exercise for Type 2 diabetes?",
+      "answer": "Best exercises (in order): 1) Brisk walking (easiest, most effective), 2) Swimming (all joints), 3) Cycling, 4) Yoga, 5) Resistance training (builds muscle that absorbs glucose). Start with 15 min walking 3x/day. Gradually build to 30 min continuous.",
+      "tags": "exercise,lifestyle,yoga",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 79,
+      "intent": "lifestyle",
+      "question": "How much water should a diabetic drink?",
+      "answer": "Diabetics need 8-10 glasses (2-2.5L) daily. High blood sugar causes excess urination and dehydration. Proper hydration: reduces blood glucose concentration, protects kidneys, reduces hunger (often mistaken for thirst). Best drinks: plain water, rasam, buttermilk, unsweetened green tea.",
+      "tags": "exercise,lifestyle,yoga",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 80,
+      "intent": "complications",
+      "question": "What are the complications of diabetes?",
+      "answer": "Uncontrolled diabetes damages blood vessels and nerves: Kidneys (nephropathy) \u2192 kidney failure, Eyes (retinopathy) \u2192 blindness, Nerves (neuropathy) \u2192 numbness/pain in feet, Heart \u2192 2-4x higher risk, Feet \u2192 infections and amputation. Proper diet reduces these risks 50-70%.",
+      "tags": "complications,prevention",
+      "language": "en",
+      "difficulty": "advanced"
+    },
+    {
+      "id": 81,
+      "intent": "complications",
+      "question": "How to protect kidneys if I have diabetes?",
+      "answer": "Kidney protection: 1) Control blood sugar (HbA1c <7%), 2) Reduce sodium/salt, 3) Limit protein to moderate amounts, 4) Stay hydrated, 5) Control blood pressure, 6) Avoid NSAIDs. South Indian diet modification: reduce salt in sambar/rasam, avoid pickles and papadams.",
+      "tags": "complications,prevention",
+      "language": "en",
+      "difficulty": "advanced"
+    },
+    {
+      "id": 82,
+      "intent": "complications",
+      "question": "How to protect eyes in diabetes?",
+      "answer": "Eye protection: 1) Control blood sugar (<180 post-meal), 2) Control blood pressure, 3) Annual eye checkup for retinopathy, 4) Eat lutein-rich foods (spinach/keerai, eggs), 5) Stop smoking. Early retinopathy is reversible with good glucose control.",
+      "tags": "complications,prevention",
+      "language": "en",
+      "difficulty": "advanced"
+    },
+    {
+      "id": 83,
+      "intent": "complications",
+      "question": "Is diabetes related to kidney stones?",
+      "answer": "Diabetes increases kidney stone risk because high glucose damages kidney filtration and causes calcium oxalate crystal formation. Prevention: drink 2.5L water daily, reduce animal protein, limit salt, eat calcium-rich foods (curd, milk) \u2014 they bind oxalate in gut preventing absorption.",
+      "tags": "complications,prevention",
+      "language": "en",
+      "difficulty": "advanced"
+    },
+    {
+      "id": 84,
+      "intent": "complications",
+      "question": "How to prevent diabetic neuropathy?",
+      "answer": "Nerve damage prevention: 1) Keep glucose <140 post-meal, 2) B12 supplementation (deficiency causes nerve damage, common in metformin users), 3) Alpha lipoic acid (found in spinach, broccoli), 4) Check feet daily for wounds, 5) Wear comfortable footwear.",
+      "tags": "complications,prevention",
+      "language": "en",
+      "difficulty": "advanced"
+    },
+    {
+      "id": 85,
+      "intent": "superfoods",
+      "question": "What are the best superfoods for diabetes in India?",
+      "answer": "Top 10 Indian diabetes superfoods: 1) Bitter gourd (GI 14), 2) Fenugreek seeds (GI 25), 3) Ragi/finger millet (GI 44), 4) Jamun/Indian blackberry, 5) Amla/gooseberry (rich in Vit C), 6) Turmeric (curcumin), 7) Drumstick/moringa, 8) Okra/vendakkai, 9) Cinnamon, 10) Flaxseeds.",
+      "tags": "superfoods,functional_foods",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 86,
+      "intent": "superfoods",
+      "question": "How to use fenugreek for diabetes?",
+      "answer": "Fenugreek (methi) methods: 1) Overnight soak: 1 tsp seeds in water, drink morning (reduces fasting glucose 10-15%), 2) Methi roti/paratha: add methi leaves to dough, 3) Add seeds to dal/sambar. Active compounds: galactomannan fiber and 4-hydroxyisoleucine (stimulates insulin).",
+      "tags": "superfoods,functional_foods",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 87,
+      "intent": "superfoods",
+      "question": "Is amla (Indian gooseberry) good for diabetes?",
+      "answer": "Amla is exceptional for diabetes: reduces oxidative stress that damages insulin-producing cells, contains chromium (improves insulin sensitivity), vitamin C (reduces glucose absorption). Have: 2 raw amla daily, or amla juice (30ml morning), or amla pickle without sugar.",
+      "tags": "superfoods,functional_foods",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 88,
+      "intent": "superfoods",
+      "question": "How does cinnamon help diabetes?",
+      "answer": "Cinnamon contains cinnamaldehyde and polyphenols that mimic insulin and improve glucose uptake. Studies show 1/2 tsp daily reduces fasting glucose 10-29% and improves insulin sensitivity. Add to: morning tea, oats, ragi porridge. Use Ceylon cinnamon (not cassia).",
+      "tags": "superfoods,functional_foods",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 89,
+      "intent": "superfoods",
+      "question": "Is turmeric good for diabetes?",
+      "answer": "Turmeric's curcumin reduces inflammation, lowers blood glucose, improves insulin sensitivity, and protects against diabetic kidney disease. Add 1/2 tsp to: dal, sambar, milk (golden milk without sugar). Combine with black pepper (increases absorption 20x).",
+      "tags": "superfoods,functional_foods",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 90,
+      "intent": "superfoods",
+      "question": "What is the role of jamun in diabetes?",
+      "answer": "Jamun (Indian blackberry / naval pazham) contains jamboline and anthocyanins that slow starch digestion and improve insulin function. The seeds are particularly potent. Available: fresh fruit (seasonal), seed powder (1/2 tsp twice daily with water), extract capsules.",
+      "tags": "superfoods,functional_foods",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 91,
+      "intent": "medication",
+      "question": "What is metformin and how does it work?",
+      "answer": "Metformin is the first-line Type 2 medication. It works by: reducing glucose production in liver, improving insulin sensitivity in muscles, slightly delaying glucose absorption. Common side effect: B12 deficiency (supplement recommended). Take with food to reduce nausea.",
+      "tags": "medication,medical",
+      "language": "en",
+      "difficulty": "advanced"
+    },
+    {
+      "id": 92,
+      "intent": "medication",
+      "question": "Should I take medicine or control through diet?",
+      "answer": "Both! Medication helps immediately while diet changes build long-term control. For new Type 2 diabetics with HbA1c <8%, diet + exercise alone for 3-6 months before medication is often recommended. For HbA1c >8%, start medication immediately. Never stop medication without doctor's advice.",
+      "tags": "medication,medical",
+      "language": "en",
+      "difficulty": "advanced"
+    },
+    {
+      "id": 93,
+      "intent": "medication",
+      "question": "Can I stop diabetes medication if I eat well?",
+      "answer": "Possibly for Type 2 \u2014 not Type 1. Some Type 2 diabetics achieve medication-free remission through significant weight loss (10-15kg) and strict diet. This requires medical supervision. Never stop medication on your own \u2014 work with your doctor to taper as glucose improves.",
+      "tags": "medication,medical",
+      "language": "en",
+      "difficulty": "advanced"
+    },
+    {
+      "id": 94,
+      "intent": "medication",
+      "question": "What supplements help diabetes?",
+      "answer": "Evidence-based supplements: 1) B12 (especially if on metformin), 2) Vitamin D (deficiency worsens insulin resistance), 3) Magnesium (regulates insulin), 4) Alpha lipoic acid (reduces neuropathy), 5) Chromium (improves insulin sensitivity). Always consult doctor before starting supplements.",
+      "tags": "medication,medical",
+      "language": "en",
+      "difficulty": "advanced"
+    },
+    {
+      "id": 95,
+      "intent": "medication",
+      "question": "How does insulin work?",
+      "answer": "Insulin is a hormone produced by pancreatic beta cells. It acts like a key \u2014 unlocking cells to let glucose in for energy. In Type 1, no insulin is produced. In Type 2, either not enough insulin or cells don't respond to it. Injected insulin replaces or supplements natural insulin.",
+      "tags": "medication,medical",
+      "language": "en",
+      "difficulty": "advanced"
+    },
+    {
+      "id": 96,
+      "intent": "nutrition_calculation",
+      "question": "How many calories should a diabetic eat per day?",
+      "answer": "Calorie targets: Women 1200-1500 kcal/day, Men 1500-1800 kcal/day (for weight management). If normal weight: 1600-2000 kcal. Distribute: 45-50% carbs, 20-25% protein, 25-30% healthy fats. Never go below 1200 kcal without medical supervision.",
+      "tags": "calories,carbs,calculation",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 97,
+      "intent": "nutrition_calculation",
+      "question": "How many carbs per day for Type 2 diabetes?",
+      "answer": "Recommended carbs for Type 2: 130-150g per day (about 45g per main meal + 15-20g per snack). Focus on quality \u2014 low GI carbs only. Compare: 1 cup white rice = 45g carbs (entire meal allowance), vs 3 small ragi dosas = 33g carbs with much lower glucose impact.",
+      "tags": "calories,carbs,calculation",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 98,
+      "intent": "nutrition_calculation",
+      "question": "How much protein should a diabetic eat?",
+      "answer": "Protein target: 0.8-1g per kg body weight (unless kidney disease \u2014 then 0.6-0.8g/kg). For 60kg person: 48-60g protein daily. Good sources: dal (7-9g/100g), eggs (13g/100g), chicken (25g/100g), fish (22g/100g), paneer (18g/100g), curd (11g/100g).",
+      "tags": "calories,carbs,calculation",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 99,
+      "intent": "nutrition_calculation",
+      "question": "What is the carb content of common South Indian foods?",
+      "answer": "Carbs per 100g: Idli 8g, Dosa 28g, Ragi dosa 22g, Idiyappam 36g, Pongal 28g, Upma 28g, Sambar 8g, Rasam 5g. Per serving: 2 idlis=16g, 1 dosa=22g, 1 cup sambar=16g. Use these to count daily carbs and estimate insulin doses.",
+      "tags": "calories,carbs,calculation",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 100,
+      "intent": "nutrition_calculation",
+      "question": "Calculate nutrition for 3 idlis and sambar",
+      "answer": "3 idlis + 1 cup (200ml) sambar: Calories: (39\u00d73) + 100 = 217 kcal. Carbs: (8\u00d73) + 16 = 40g. Protein: (2\u00d73) + 6 = 12g. Fat: (0\u00d73) + 2 = 2g. Fiber: (1\u00d73) + 6 = 9g. Glucose impact: ~36g. This is an excellent diabetic breakfast \u2014 low fat, good protein, high fiber.",
+      "tags": "calories,carbs,calculation",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 101,
+      "intent": "weight_management",
+      "question": "How to lose weight with diabetes?",
+      "answer": "Weight loss strategy for diabetics: 1) Reduce rice/roti portions by 25%, 2) Double vegetable portions, 3) Choose ragi over rice, 4) Eliminate sweets and fried foods, 5) Walk 30-45 min daily, 6) Eat 5-6 small meals (prevent hunger and overeating). Target: 0.5kg/week loss.",
+      "tags": "weight,obesity",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 102,
+      "intent": "weight_management",
+      "question": "What is the best diet for diabetic weight loss?",
+      "answer": "Diabetic weight loss diet: Breakfast: Ragi porridge (120 cal). Lunch: Salad + 1/2 cup rajma + 1 roti. Evening: Buttermilk + 5 almonds. Dinner: Dal + 1 roti + keerai. Total ~1200-1400 kcal. Losing 7-10% body weight can significantly improve or reverse Type 2 diabetes.",
+      "tags": "weight,obesity",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 103,
+      "intent": "weight_management",
+      "question": "Does obesity cause diabetes?",
+      "answer": "Excess body fat (especially belly fat) releases fatty acids and inflammatory chemicals that block insulin signaling \u2014 causing insulin resistance, the root cause of Type 2 diabetes. For every 1 BMI unit reduction, diabetes risk drops 16%. Waist >90cm (men) or >80cm (women) is a key risk factor.",
+      "tags": "weight,obesity",
+      "language": "en",
+      "difficulty": "intermediate"
+    },
+    {
+      "id": 104,
+      "intent": "regional_foods",
+      "question": "Which traditional Tamil foods are good for diabetes?",
+      "answer": "Best traditional Tamil foods for diabetes: Kollu (horse gram) kanji \u2014 excellent, GI 29. Ragi koozh (porridge). Bitter gourd sambar. Keerai kootu. Drumstick sambar. Mor kuzhambu. Pesarattu. Vendakkai fry. These traditional foods were naturally suited for blood sugar management.",
+      "tags": "tamil,kerala,andhra,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 105,
+      "intent": "regional_foods",
+      "question": "Is Kollu (horse gram) good for diabetes?",
+      "answer": "Kollu/horse gram is exceptional \u2014 GI 29 (very low), 321 calories, 22g protein, 5g fiber per 100g. Contains polyphenols that inhibit starch digestion enzymes. Kollu rasam and kollu sambar were traditional diabetes treatments in Tamil Nadu. Excellent choice.",
+      "tags": "tamil,kerala,andhra,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 106,
+      "intent": "regional_foods",
+      "question": "Is Kanji (rice porridge) good for diabetes?",
+      "answer": "Rice kanji has HIGH GI (70-75) \u2014 avoid. Alternatives: Ragi kanji (GI 44) \u2014 excellent. Oats kanji \u2014 very good. Kollu kanji \u2014 excellent (GI 29). Mix any of these with buttermilk for probiotic benefit. Traditional ragi kanji was the original 'diabetes food' in Tamil culture.",
+      "tags": "tamil,kerala,andhra,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 107,
+      "intent": "regional_foods",
+      "question": "Tell me about traditional Kerala foods for diabetes",
+      "answer": "Best Kerala foods for diabetes: Avial (excellent \u2014 mixed vegetables), Thoran (dry vegetable stir-fry), Mor kuzhambu (probiotic), Puttu with kadala curry (moderate \u2014 kadala is high protein), Kanji with papad, Fish curry with rice (small portion). Avoid: Payasam, sweet chips, banana chips.",
+      "tags": "tamil,kerala,andhra,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 108,
+      "intent": "regional_foods",
+      "question": "What about Andhra foods for diabetes?",
+      "answer": "Best Andhra foods for diabetes: Pesarattu (green moong \u2014 excellent), Annam with rasam + pappu (rice with lentils \u2014 small rice portion), Gongura dal (sorrel leaves), Dondakaya fry (ivy gourd), Gutti vankaya curry (brinjal \u2014 low GI). Avoid: Pulihora (tamarind rice), Pongal (sweet).",
+      "tags": "tamil,kerala,andhra,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 109,
+      "intent": "regional_foods",
+      "question": "Is coconut oil healthy for diabetics?",
+      "answer": "Coconut oil: Medium chain triglycerides (MCTs) in coconut oil are quickly metabolized and don't cause insulin spike. However, it's high in saturated fat. Use in moderation \u2014 1-2 tsp/day for cooking South Indian food. Better than processed vegetable oils for diabetics. Not a cure, but acceptable in traditional cooking.",
+      "tags": "tamil,kerala,andhra,south_indian",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 110,
+      "intent": "meta",
+      "question": "How accurate is this diabetes prediction?",
+      "answer": "Our ML ensemble model is trained on 100,768 patient records with 96.87% accuracy. It uses Random Forest + Gradient Boosting + Logistic Regression. Nutritional data comes from validated databases. However, this is a decision-support tool \u2014 always consult your doctor.",
+      "tags": "about,accuracy",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 111,
+      "intent": "meta",
+      "question": "Where does your data come from?",
+      "answer": "Data sources: 1) 100,000-patient diabetes prediction dataset (Kaggle), 2) Pima Indians diabetes dataset (768 patients), 3) ICMR (Indian Council of Medical Research) nutritional database, 4) National Institute of Nutrition (Hyderabad) Indian food tables, 5) Published clinical studies on South Indian foods.",
+      "tags": "about,accuracy",
+      "language": "en",
+      "difficulty": "basic"
+    },
+    {
+      "id": 112,
+      "intent": "meta",
+      "question": "Can you replace my doctor?",
+      "answer": "No! I am a decision-support tool, not a doctor. I can: suggest what foods to eat, estimate nutrition, give general guidance. I CANNOT: diagnose diabetes, prescribe medication, replace clinical judgment. Always consult your endocrinologist, especially for medication changes or emergency glucose levels.",
+      "tags": "about,accuracy",
+      "language": "en",
+      "difficulty": "basic"
+    }
+  ]
+}

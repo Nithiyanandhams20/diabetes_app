@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiabetesMeal AI – Smart Nutrition for Diabetes Patients</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:   #0d9488;
+  --teal2:  #14b8a6;
+  --green:  #22c55e;
+  --amber:  #f59e0b;
+  --red:    #ef4444;
+  --bg:     #f0fdf9;
+  --card:   #ffffff;
+  --border: #d1fae5;
+  --text:   #0f172a;
+  --muted:  #64748b;
+  --grad:   linear-gradient(135deg, #0d9488 0%, #0891b2 100%);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── NAV ── */
+nav {
+  background: var(--grad);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(13,148,136,.3);
+}
+.nav-brand { display: flex; align-items: center; gap: .6rem; }
+.nav-brand svg { width: 32px; height: 32px; }
+.nav-brand span { font-size: 1.25rem; font-weight: 800; color: #fff; letter-spacing: -.5px; }
+.nav-tabs { display: flex; gap: .25rem; }
+.nav-tab {
+  padding: .4rem 1rem;
+  border-radius: 8px;
+  color: rgba(255,255,255,.75);
+  font-size: .85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+  border: none;
+  background: none;
+}
+.nav-tab:hover, .nav-tab.active { background: rgba(255,255,255,.2); color: #fff; }
+.nav-badge {
+  background: rgba(255,255,255,.2);
+  padding: .25rem .75rem;
+  border-radius: 20px;
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 600;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--grad);
+  padding: 3rem 2rem 5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0; right: 0;
+  height: 60px;
+  background: var(--bg);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+.hero h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.hero h1 em { font-style: italic; color: #a7f3d0; }
+.hero p { color: rgba(255,255,255,.85); max-width: 560px; margin: 0 auto 2rem; line-height: 1.6; }
+.stats-bar {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.stat-pill {
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,.25);
+  padding: .5rem 1.25rem;
+  border-radius: 30px;
+  color: #fff;
+  font-size: .85rem;
+  font-weight: 600;
+}
+.stat-pill span { color: #a7f3d0; font-size: 1.1rem; }
+
+/* ── LAYOUT ── */
+.main { max-width: 1100px; margin: -2rem auto 0; padding: 0 1.5rem 4rem; position: relative; z-index: 1; }
+.sections { display: none; }
+.sections.active { display: block; }
+
+/* ── CARDS ── */
+.card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 24px rgba(13,148,136,.06);
+}
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.card-title .icon {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+}
+
+/* ── FORM ── */
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: .4rem; }
+.form-group label { font-size: .8rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+.form-group input, .form-group select {
+  padding: .7rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: .95rem;
+  font-family: inherit;
+  color: var(--text);
+  transition: border .2s;
+  background: #fff;
+}
+.form-group input:focus, .form-group select:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+.radio-group { display: flex; gap: .75rem; }
+.radio-btn {
+  flex: 1;
+  padding: .65rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  font-size: .85rem;
+  font-weight: 600;
+  transition: all .2s;
+}
+.radio-btn.selected { border-color: var(--teal); background: #f0fdf9; color: var(--teal); }
+
+/* ── BUTTONS ── */
+.btn {
+  padding: .75rem 2rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: .95rem;
+  cursor: pointer;
+  border: none;
+  transition: all .2s;
+  font-family: inherit;
+}
+.btn-primary {
+  background: var(--grad);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(13,148,136,.3);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(13,148,136,.4); }
+.btn-secondary { background: #f1f5f9; color: var(--text); }
+.btn-sm { padding: .5rem 1rem; font-size: .85rem; }
+
+/* ── RESULT CARDS ── */
+.result-card {
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  border: 1px solid transparent;
+}
+.risk-meter { width: 100%; height: 12px; background: #e2e8f0; border-radius: 6px; overflow: hidden; margin: .75rem 0; }
+.risk-fill { height: 100%; border-radius: 6px; transition: width .8s cubic-bezier(.4,0,.2,1); }
+
+/* ── GAUGE ── */
+#riskGaugeCanvas { filter: drop-shadow(0 4px 12px rgba(0,0,0,.1)); }
+@keyframes gaugeGlow { 0%,100%{opacity:1} 50%{opacity:.7} }
+#gauge-label { animation: none; }
+.gauge-active #gauge-label { animation: gaugeGlow 1.5s ease-in-out 3; }
+
+
+.nutrition-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: .75rem;
+  margin-top: 1rem;
+}
+.nutrition-item {
+  background: var(--bg);
+  border-radius: 12px;
+  padding: .75rem;
+  text-align: center;
+}
+.nutrition-item .val { font-size: 1.4rem; font-weight: 800; color: var(--teal); }
+.nutrition-item .lbl { font-size: .75rem; color: var(--muted); margin-top: .2rem; }
+
+/* ── MEAL CARDS ── */
+.meal-section { margin-bottom: 1.5rem; }
+.meal-section-title {
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--teal);
+  margin-bottom: .75rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.meal-cards-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .75rem; }
+.meal-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem;
+  transition: transform .2s;
+}
+.meal-card:hover { transform: translateY(-3px); }
+.meal-card h4 { font-size: .9rem; font-weight: 700; margin-bottom: .4rem; }
+.meal-card p { font-size: .78rem; color: var(--muted); line-height: 1.5; }
+.meal-badge {
+  display: inline-block;
+  padding: .2rem .6rem;
+  border-radius: 20px;
+  font-size: .7rem;
+  font-weight: 700;
+  margin-top: .5rem;
+}
+.badge-low { background: #dcfce7; color: #16a34a; }
+.badge-med { background: #fef3c7; color: #d97706; }
+.badge-high { background: #fee2e2; color: #dc2626; }
+
+.avoid-list { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+.avoid-tag {
+  background: #fee2e2;
+  color: #dc2626;
+  padding: .3rem .75rem;
+  border-radius: 20px;
+  font-size: .78rem;
+  font-weight: 600;
+}
+
+/* ── IMAGE UPLOAD ── */
+.upload-zone {
+  border: 2px dashed #94a3b8;
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all .2s;
+  position: relative;
+}
+.upload-zone:hover, .upload-zone.drag { border-color: var(--teal); background: #f0fdf9; }
+.upload-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+.upload-zone .upload-icon { font-size: 3rem; margin-bottom: 1rem; }
+.upload-zone p { color: var(--muted); font-size: .9rem; }
+#preview-img { max-width: 100%; max-height: 240px; border-radius: 12px; margin: 1rem auto; display: block; }
+
+/* ── TABS ── */
+.tab-pills { display: flex; gap: .5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.tab-pill {
+  padding: .5rem 1.2rem;
+  border-radius: 30px;
+  font-size: .85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid #e2e8f0;
+  background: #fff;
+  color: var(--muted);
+  transition: all .2s;
+}
+.tab-pill.active { background: var(--teal); border-color: var(--teal); color: #fff; }
+
+/* ── LOADING ── */
+.spinner {
+  width: 28px; height: 28px;
+  border: 3px solid #e2e8f0;
+  border-top-color: var(--teal);
+  border-radius: 50%;
+  animation: spin .6s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: .5rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { display: none; align-items: center; color: var(--muted); margin-top: 1rem; }
+.loading-text.show { display: flex; }
+
+/* ── FOOD SEARCH ── */
+.food-search-wrap { position: relative; }
+.food-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0; right: 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 50;
+  box-shadow: 0 8px 24px rgba(0,0,0,.1);
+  display: none;
+}
+.food-suggestion-item {
+  padding: .65rem 1rem;
+  cursor: pointer;
+  font-size: .9rem;
+  transition: background .15s;
+}
+.food-suggestion-item:hover { background: var(--bg); color: var(--teal); }
+
+/* ── CHAT ── */
+.chat-messages {
+  height: 360px;
+  overflow-y: auto;
+  padding: 1rem;
+  background: var(--bg);
+  border-radius: 14px;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+.chat-msg { max-width: 80%; }
+.chat-msg.bot { align-self: flex-start; }
+.chat-msg.user { align-self: flex-end; }
+.chat-bubble {
+  padding: .75rem 1rem;
+  border-radius: 14px;
+  font-size: .9rem;
+  line-height: 1.5;
+}
+.chat-msg.bot .chat-bubble { background: #fff; border: 1px solid var(--border); }
+.chat-msg.user .chat-bubble { background: var(--grad); color: #fff; }
+.chat-input-row { display: flex; gap: .75rem; }
+.chat-input-row input {
+  flex: 1;
+  padding: .75rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: .9rem;
+}
+.chat-input-row input:focus { outline: none; border-color: var(--teal); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  nav { padding: 0 1rem; }
+  .nav-tabs { display: none; }
+  .hero { padding: 2rem 1rem 4rem; }
+  .main { padding: 0 1rem 3rem; }
+  .card { padding: 1.25rem; }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp .4s ease forwards; }
+
+/* ── AI Nutrition Assistant — Structured Response Cards ── */
+.ai-response-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 0 14px 14px 14px;
+  max-width: 88%;
+  overflow: hidden;
+  font-size: .85rem;
+}
+.ai-rc-topic {
+  padding: .65rem 1rem;
+  font-weight: 700;
+  font-size: .9rem;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+.ai-rc-section {
+  padding: .5rem 1rem;
+  border-bottom: 1px solid #f8f8f8;
+}
+.ai-rc-section:last-child { border-bottom: none; }
+.ai-rc-label {
+  font-size: .68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--muted);
+  margin-bottom: .25rem;
+}
+.ai-rc-text { color: var(--text); line-height: 1.6; }
+.ai-gi-row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-top: .2rem; }
+.ai-pill {
+  padding: .2rem .7rem;
+  border-radius: 20px;
+  font-size: .72rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.ai-pill-low    { background: #d1fae5; color: #065f46; }
+.ai-pill-medium { background: #fef3c7; color: #92400e; }
+.ai-pill-high   { background: #fee2e2; color: #991b1b; }
+.ai-pill-na     { background: #f1f5f9; color: #64748b; }
+.ai-pill-safe   { background: #d1fae5; color: #065f46; }
+.ai-pill-mod    { background: #fef3c7; color: #92400e; }
+.ai-pill-avoid  { background: #fee2e2; color: #991b1b; }
+.ai-pill-info   { background: #e0f2fe; color: #0369a1; }
+.ai-tip {
+  background: #f0fdf9;
+  border-left: 3px solid var(--teal);
+  padding: .45rem .85rem;
+  font-size: .8rem;
+  color: var(--teal-dark, #0f766e);
+  margin: .4rem .75rem .65rem;
+  border-radius: 0 8px 8px 0;
+  line-height: 1.5;
+}
+.ai-scope-msg {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 0 14px 14px 14px;
+  padding: .75rem 1rem;
+  max-width: 85%;
+  font-size: .85rem;
+  color: var(--muted);
+  font-style: italic;
+}
+.ai-thinking-dots {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: .4rem 0;
+}
+.ai-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--muted);
+  animation: aiDotBlink 1.2s infinite;
+}
+.ai-dot:nth-child(2) { animation-delay: .2s; }
+.ai-dot:nth-child(3) { animation-delay: .4s; }
+@keyframes aiDotBlink { 0%,80%,100%{opacity:.2} 40%{opacity:1} }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <svg viewBox="0 0 40 40" fill="none">
+      <circle cx="20" cy="20" r="20" fill="rgba(255,255,255,.2)"/>
+      <path d="M20 8C20 8 13 14 13 20C13 24 16 27 20 27C24 27 27 24 27 20C27 14 20 8 20 8Z" fill="white"/>
+      <circle cx="20" cy="22" r="3" fill="rgba(13,148,136,.6)"/>
+    </svg>
+    <span>DiabetesMeal AI</span>
+  </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showSection('assess')">Risk Assessment</button>
+    <button class="nav-tab" onclick="showSection('meals')">Meal Plans</button>
+    <button class="nav-tab" onclick="showSection('analyze')">Food Analyzer</button>
+    <button class="nav-tab" onclick="showSection('calc')">🧮 Nutrition Calc</button>
+    <button class="nav-tab" onclick="showSection('photo')">Photo Scan</button>
+    <button class="nav-tab" onclick="showSection('chat')">NLP Assistant</button>
+  </div>
+  <div style="display:flex;align-items:center;gap:.75rem;">
+    <div class="nav-badge" id="ds-badge">Loading dataset…</div>
+    <div style="display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.15);border-radius:20px;padding:.3rem .75rem .3rem .5rem;">
+      <div style="width:28px;height:28px;background:rgba(255,255,255,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;">👤</div>
+      <span style="color:#fff;font-size:.82rem;font-weight:600;">{{ patient_name }}</span>
+      <a href="/auth/logout" style="color:rgba(255,255,255,.7);font-size:.75rem;font-weight:600;margin-left:.3rem;text-decoration:none;" title="Sign out">✕</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Precise Meals for<br><em>Diabetes Patients</em></h1>
+  <p>AI-powered nutritional guidance for Type 1 & Type 2 diabetes. Upload food photos, get personalised meal plans, and predict glucose impact.</p>
+  <div class="stats-bar">
+    <div class="stat-pill">📊 <span id="s-total">—</span> Patient Records</div>
+    <div class="stat-pill">🍛 <span id="s-foods">—</span> Indian Foods</div>
+    <div class="stat-pill">🤖 ML Ensemble Model</div>
+    <div class="stat-pill" id="s-acc">📈 Loading accuracy…</div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+  <!-- MOBILE TAB PILLS -->
+  <div class="tab-pills" style="margin-top:1.5rem;">
+    <div class="tab-pill active" onclick="showSection('assess')">🩺 Risk</div>
+    <div class="tab-pill" onclick="showSection('meals')">🍽️ Meals</div>
+    <div class="tab-pill" onclick="showSection('analyze')">🔍 Analyze</div>
+    <div class="tab-pill" onclick="showSection('calc')">🧮 Calc</div>
+    <div class="tab-pill" onclick="showSection('photo')">📷 Photo</div>
+    <div class="tab-pill" onclick="showSection('chat')">💬 NLP Chat</div>
+  </div>
+
+  <!-- ── SECTION 1: RISK ASSESSMENT ── -->
+  <div class="sections active fade-up" id="sec-assess">
+    <div class="card">
+      <div class="card-title"><div class="icon">🩺</div> Diabetes Risk Assessment</div>
+      <p style="font-size:.9rem;color:var(--muted);margin-bottom:1.5rem;">Enter your health parameters to assess diabetes risk and get a personalised profile.</p>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Age (years)</label>
+          <input type="number" id="age" placeholder="e.g. 35" min="1" max="120">
+        </div>
+        <div class="form-group">
+          <label>Gender</label>
+          <select id="gender">
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Blood Glucose (mg/dL)</label>
+          <input type="number" id="glucose" placeholder="e.g. 120" min="50" max="500">
+        </div>
+        <div class="form-group">
+          <label>HbA1c Level (%)</label>
+          <input type="number" id="hba1c" placeholder="e.g. 5.8" step="0.1" min="3" max="15">
+        </div>
+        <div class="form-group">
+          <label>BMI</label>
+          <input type="number" id="bmi" placeholder="e.g. 24.5" step="0.1" min="10" max="60">
+        </div>
+        <div class="form-group">
+          <label>Hypertension</label>
+          <div class="radio-group">
+            <div class="radio-btn" id="hyp-no" onclick="selectRadio('hyp','no')" style="border-color:var(--teal);background:#f0fdf9;color:var(--teal)">No</div>
+            <div class="radio-btn" id="hyp-yes" onclick="selectRadio('hyp','yes')">Yes</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Heart Disease</label>
+          <div class="radio-group">
+            <div class="radio-btn" id="hd-no" onclick="selectRadio('hd','no')" style="border-color:var(--teal);background:#f0fdf9;color:var(--teal)">No</div>
+            <div class="radio-btn" id="hd-yes" onclick="selectRadio('hd','yes')">Yes</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Smoking History</label>
+          <select id="smoking">
+            <option value="never">Never</option>
+            <option value="former">Former</option>
+            <option value="current">Current</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="assessRisk()">Assess Diabetes Risk</button>
+        <button class="btn btn-secondary" onclick="clearAssess()">Clear</button>
+      </div>
+      <div class="loading-text" id="assess-loading"><div class="spinner"></div> Analysing health parameters…</div>
+    </div>
+
+    <div class="card fade-up" id="risk-result" style="display:none;">
+      <div class="card-title"><div class="icon">📊</div> Risk Assessment Result</div>
+
+      <!-- ANIMATED GAUGE -->
+      <div style="display:flex;flex-wrap:wrap;gap:1.5rem;align-items:flex-start;">
+        <div style="flex:0 0 auto;text-align:center;">
+          <canvas id="riskGaugeCanvas" width="260" height="155" style="display:block;margin:0 auto;"></canvas>
+          <div id="gauge-label" style="font-size:.82rem;font-weight:700;color:var(--muted);margin-top:.25rem;letter-spacing:.5px;text-transform:uppercase;"></div>
+        </div>
+        <div style="flex:1;min-width:220px;">
+          <div style="font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem;">Risk Factor Breakdown</div>
+          <div id="risk-bars"></div>
+        </div>
+      </div>
+      <div id="risk-result-content" style="margin-top:1.25rem;"></div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2: MEAL PLANS ── -->
+  <div class="sections" id="sec-meals">
+    <div class="card">
+      <div class="card-title"><div class="icon">🍽️</div> Personalised Meal Plan</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Diabetes Type</label>
+          <select id="meal-dtype">
+            <option value="type2">Type 2 Diabetes</option>
+            <option value="type1">Type 1 Diabetes</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Current Blood Glucose (mg/dL)</label>
+          <input type="number" id="meal-glucose" placeholder="e.g. 130" value="130">
+        </div>
+        <div class="form-group">
+          <label>Show Meal Time</label>
+          <select id="meal-time">
+            <option value="all">All Day</option>
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="snacks">Snacks</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;">
+        <button class="btn btn-primary" onclick="getMealPlan()">Generate Meal Plan</button>
+      </div>
+      <div class="loading-text" id="meal-loading"><div class="spinner"></div> Generating personalised meal plan…</div>
+    </div>
+
+    <div id="meal-result"></div>
+  </div>
+
+  <!-- ── SECTION 3: FOOD ANALYZER ── -->
+  <div class="sections" id="sec-analyze">
+    <div class="card">
+      <div class="card-title"><div class="icon">🔍</div> Food Nutrition Analyzer</div>
+      <div class="form-grid">
+        <div class="form-group food-search-wrap">
+          <label>Food Name</label>
+          <input type="text" id="food-name" placeholder="e.g. Dal Makhani, Chapati…" autocomplete="off" oninput="showFoodSuggestions(this.value)">
+          <div class="food-suggestions" id="food-suggestions"></div>
+        </div>
+        <div class="form-group">
+          <label>Portion (grams)</label>
+          <input type="number" id="portion" placeholder="100" value="100" min="10" max="1000">
+        </div>
+        <div class="form-group">
+          <label>Diabetes Type</label>
+          <select id="analyze-dtype">
+            <option value="type2">Type 2</option>
+            <option value="type1">Type 1</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;">
+        <button class="btn btn-primary" onclick="analyzeFood()">Analyze Food</button>
+      </div>
+      <div class="loading-text" id="analyze-loading"><div class="spinner"></div> Calculating nutrition values…</div>
+    </div>
+
+    <div class="card fade-up" id="analyze-result" style="display:none;"></div>
+  </div>
+
+
+  <!-- ── SECTION 4: NUTRITION CALCULATOR ── -->
+  <div class="sections" id="sec-calc">
+    <div class="card">
+      <div class="card-title"><div class="icon">🧮</div> Natural Language Nutrition Calculator</div>
+      <p style="font-size:.9rem;color:var(--muted);margin-bottom:1.5rem;">
+        Type your meal in plain English — I'll calculate the total nutrition instantly.
+      </p>
+      <div class="form-group" style="margin-bottom:1rem;">
+        <label>Describe Your Meal</label>
+        <textarea id="calc-input" rows="3" placeholder="e.g. 2 chapati + 1 cup dal makhani + 100g bhindi masala&#10;or: my lunch: 1 plate biryani and 1 bowl curd&#10;or: 3 idli + sambar + 50g chutney"
+          style="width:100%;padding:.75rem 1rem;border:2px solid #e2e8f0;border-radius:12px;font-size:.9rem;font-family:inherit;resize:vertical;"
+          onkeydown="if(event.key==='Enter'&&event.ctrlKey) calcNutrition()"></textarea>
+      </div>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem;">
+        <button class="btn btn-primary" onclick="calcNutrition()">🧮 Calculate Nutrition</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('calc-input').value=''">Clear</button>
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <button class="btn btn-secondary btn-sm" onclick="setCalcExample('2 chapati + 1 cup dal makhani + 100g bhindi masala')">Example 1</button>
+        <button class="btn btn-secondary btn-sm" onclick="setCalcExample('3 idli + 1 bowl sambar + 50g curd')">Example 2</button>
+        <button class="btn btn-secondary btn-sm" onclick="setCalcExample('1 plate biryani + 1 cup raita + 1 apple')">Example 3</button>
+        <button class="btn btn-secondary btn-sm" onclick="setCalcExample('1 cup brown rice + palak paneer + dal tadka')">Example 4</button>
+      </div>
+      <div class="loading-text" id="calc-loading"><div class="spinner"></div> Calculating nutrition...</div>
+    </div>
+    <div class="card fade-up" id="calc-result" style="display:none;"></div>
+  </div>
+
+  <!-- ── SECTION 5: PHOTO SCAN ── -->
+  <div class="sections" id="sec-photo">
+    <div class="card">
+      <div class="card-title"><div class="icon">📷</div> Food Photo Scanner</div>
+      <p style="font-size:.9rem;color:var(--muted);margin-bottom:1.5rem;">Take or upload a photo of your food and get instant glucose & calorie prediction powered by AI.</p>
+
+      <div class="upload-zone" id="upload-zone">
+        <input type="file" id="food-image" accept="image/*" onchange="previewImage(this)">
+        <div class="upload-icon">📸</div>
+        <p><strong>Click to upload or drag & drop</strong></p>
+        <p style="margin-top:.5rem;font-size:.8rem;">Supports JPG, PNG, WEBP (max 10MB)</p>
+      </div>
+      <img id="preview-img" style="display:none;" alt="Food preview">
+
+      <div style="margin-top:1rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap;">
+        <div class="form-group" style="flex:1;min-width:180px;">
+          <label>Diabetes Type</label>
+          <select id="photo-dtype">
+            <option value="type2">Type 2</option>
+            <option value="type1">Type 1</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" style="margin-top:1.4rem;" onclick="analyzePhoto()">🔬 Analyze Photo</button>
+      </div>
+      <div class="loading-text" id="photo-loading"><div class="spinner"></div> AI is identifying food and calculating nutrition…</div>
+    </div>
+
+    <div class="card fade-up" id="photo-result" style="display:none;"></div>
+  </div>
+
+  <!-- ── SECTION 5: AI NUTRITION ASSISTANT ── -->
+  <div class="sections" id="sec-chat">
+
+    <!-- Assistant header card -->
+    <div class="card" style="margin-bottom:1rem;padding:1.25rem 1.5rem;">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <div style="width:42px;height:42px;border-radius:12px;background:#d1fae5;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;">🍽️</div>
+        <div style="flex:1;min-width:180px;">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span style="font-size:1rem;font-weight:700;color:var(--text)">Diabetes Nutrition AI</span>
+            <span id="ai-status-badge" style="display:inline-flex;align-items:center;gap:4px;font-size:.72rem;font-weight:700;padding:.2rem .65rem;border-radius:20px;background:#d1fae5;color:#065f46;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#059669;display:inline-block;"></span>
+              Online
+            </span>
+          </div>
+          <p style="font-size:.78rem;color:var(--muted);margin-top:2px;">Specialist in diabetes, food &amp; South Indian nutrition · Structured responses only</p>
+        </div>
+        <div style="font-size:.72rem;color:var(--muted);text-align:right;line-height:1.6;">
+          <div>📊 96 foods · 112 Q&amp;A</div>
+          <div>🤖 97% ML accuracy</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick chips -->
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:.75rem;">
+      <button class="btn btn-secondary btn-sm" onclick="aiAsk('Can diabetics eat idli?')">🍽️ Idli for diabetes?</button>
+      <button class="btn btn-secondary btn-sm" onclick="aiAsk('Is ragi good for blood sugar?')">🌾 Ragi &amp; blood sugar</button>
+      <button class="btn btn-secondary btn-sm" onclick="aiAsk('What is glycemic index?')">📊 What is GI?</button>
+      <button class="btn btn-secondary btn-sm" onclick="aiAsk('Best breakfast for Type 2 diabetics?')">🌅 Type 2 breakfast</button>
+      <button class="btn btn-secondary btn-sm" onclick="aiAsk('Can I eat rice with diabetes?')">🍚 Rice &amp; diabetes</button>
+      <button class="btn btn-secondary btn-sm" onclick="aiAsk('Is bitter gourd good for diabetes?')">🥬 Bitter gourd</button>
+      <button class="btn btn-secondary btn-sm" onclick="aiAsk('My glucose is 250, what should I eat?')">🚨 High glucose</button>
+      <button class="btn btn-secondary btn-sm" onclick="aiAsk('Tamil Nadu foods for diabetes')">🌴 Tamil foods</button>
+      <button class="btn btn-secondary btn-sm" onclick="aiAsk('Rice vs roti which is better?')">⚖️ Rice vs Roti</button>
+      <button class="btn btn-secondary btn-sm" onclick="aiAsk('Calculate: 2 chapati + 1 cup dal + 100g bhindi')">🧮 Calc meal</button>
+    </div>
+
+    <!-- Chat window -->
+    <div class="card" style="padding:0;overflow:hidden;">
+      <div id="ai-chat" style="height:400px;overflow-y:auto;padding:1.25rem;display:flex;flex-direction:column;gap:14px;background:var(--bg);">
+        <!-- Welcome message -->
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:30px;height:30px;border-radius:50%;background:#d1fae5;color:#065f46;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;">AI</div>
+          <div style="background:#fff;border:1px solid var(--border);border-radius:0 14px 14px 14px;padding:.75rem 1rem;max-width:85%;font-size:.88rem;line-height:1.6;">
+            Hello! I am your <strong>Diabetes Nutrition Assistant</strong>.<br><br>
+            I answer questions about <strong>diabetes · food · glycemic index · meal planning · South Indian cuisine</strong>.<br><br>
+            Every answer follows a structured format: topic → explanation → GI impact → recommendation → tip.
+          </div>
+        </div>
+      </div>
+
+      <!-- Scope warning bar -->
+      <div id="ai-scope-warning" style="display:none;background:#fef3c7;border-top:1px solid #fde68a;padding:.5rem 1.25rem;font-size:.78rem;color:#92400e;font-weight:600;">
+        ⚠️ I can only answer questions about diabetes, nutrition, and food.
+      </div>
+
+      <!-- Input row -->
+      <div style="padding:.85rem 1.25rem;border-top:1px solid var(--border);display:flex;gap:.6rem;">
+        <input type="text" id="ai-input"
+          placeholder="Ask about a food, meal, or diabetes topic…"
+          style="flex:1;padding:.65rem .9rem;border:1.5px solid #e2e8f0;border-radius:10px;font-size:.88rem;font-family:inherit;transition:border .18s;"
+          onkeydown="if(event.key==='Enter')aiSend()"
+          onfocus="this.style.borderColor='var(--teal)'"
+          onblur="this.style.borderColor='#e2e8f0'">
+        <button id="ai-send-btn" onclick="aiSend()"
+          style="padding:.65rem 1.25rem;background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border:none;border-radius:10px;font-weight:700;font-size:.88rem;cursor:pointer;font-family:inherit;white-space:nowrap;">
+          Ask →
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /main -->
+
+<script>
+const FOODS = {{ indian_foods|safe }};
+let selectedHyp = 'no', selectedHd = 'no';
+
+// ── INIT ──────────────────────────────────────────────────
+fetch('/dataset_stats').then(r=>r.json()).then(d => {
+  document.getElementById('ds-badge').textContent = `${d.total_records.toLocaleString()} records`;
+  document.getElementById('s-total').textContent = d.total_records.toLocaleString();
+  document.getElementById('s-foods').textContent = d.indian_foods_count;
+  if(d.model_accuracy && document.getElementById('s-acc')) {
+    document.getElementById('s-acc').textContent = `📈 ${d.model_accuracy.ensemble}% ML Accuracy`;
+  }
+});
+
+// ── NAVIGATION ──────────────────────────────────────────────
+function showSection(name) {
+  document.querySelectorAll('.sections').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-pill').forEach(t => t.classList.remove('active'));
+  document.getElementById('sec-'+name).classList.add('active');
+  document.querySelectorAll('.nav-tab').forEach(t => { if(t.textContent.toLowerCase().includes(name.slice(0,4))) t.classList.add('active'); });
+  document.querySelectorAll('.tab-pill').forEach(t => { if(t.getAttribute('onclick').includes(name)) t.classList.add('active'); });
+}
+
+function selectRadio(group, val) {
+  const prefix = group === 'hyp' ? 'hyp' : 'hd';
+  if(group==='hyp') selectedHyp = val;
+  else selectedHd = val;
+  ['yes','no'].forEach(v => {
+    const el = document.getElementById(prefix+'-'+v);
+    if(v === val) { el.style.borderColor='var(--teal)'; el.style.background='#f0fdf9'; el.style.color='var(--teal)'; }
+    else { el.style.borderColor='#e2e8f0'; el.style.background=''; el.style.color=''; }
+  });
+}
+
+// ── RISK ASSESSMENT ──────────────────────────────────────────
+// ══ ANIMATED GAUGE ══════════════════════════════════════════
+let gaugeAnimRAF = null;
+
+function drawGauge(canvas, pct, color) {
+  const ctx  = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const cx = W / 2, cy = H - 18;
+  const r  = Math.min(W, H * 2) * 0.42;
+
+  ctx.clearRect(0, 0, W, H);
+
+  // ── track zones (low / medium / high) ──
+  const zones = [
+    { from: Math.PI, to: Math.PI * 1.33, color: '#bbf7d0' },
+    { from: Math.PI * 1.33, to: Math.PI * 1.67, color: '#fde68a' },
+    { from: Math.PI * 1.67, to: Math.PI * 2,    color: '#fca5a5' },
+  ];
+  zones.forEach(z => {
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, z.from, z.to);
+    ctx.lineWidth = 22;
+    ctx.strokeStyle = z.color;
+    ctx.stroke();
+  });
+
+  // ── track border ──
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, Math.PI, Math.PI * 2);
+  ctx.lineWidth = 22;
+  ctx.strokeStyle = 'rgba(0,0,0,.06)';
+  ctx.stroke();
+
+  // ── filled arc (progress) ──
+  const endAngle = Math.PI + (pct / 100) * Math.PI;
+  const grad = ctx.createLinearGradient(cx - r, cy, cx + r, cy);
+  grad.addColorStop(0, '#22c55e');
+  grad.addColorStop(0.5, '#f59e0b');
+  grad.addColorStop(1, '#ef4444');
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, Math.PI, endAngle);
+  ctx.lineWidth = 22;
+  ctx.lineCap = 'round';
+  ctx.strokeStyle = color;
+  ctx.stroke();
+
+  // ── needle ──
+  const needleAngle = Math.PI + (pct / 100) * Math.PI;
+  const nx = cx + (r - 2) * Math.cos(needleAngle);
+  const ny = cy + (r - 2) * Math.sin(needleAngle);
+  ctx.beginPath();
+  ctx.moveTo(cx, cy);
+  ctx.lineTo(nx, ny);
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = '#1e293b';
+  ctx.lineCap = 'round';
+  ctx.stroke();
+
+  // ── needle hub ──
+  ctx.beginPath();
+  ctx.arc(cx, cy, 7, 0, Math.PI * 2);
+  ctx.fillStyle = '#1e293b';
+  ctx.fill();
+
+  // ── centre score text ──
+  ctx.font = `bold ${Math.round(r * 0.38)}px 'Plus Jakarta Sans', sans-serif`;
+  ctx.fillStyle = color;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(Math.round(pct) + '%', cx, cy - r * 0.18);
+
+  // ── zone labels ──
+  ctx.font = `600 ${Math.round(r * 0.13)}px 'Plus Jakarta Sans', sans-serif`;
+  ctx.fillStyle = '#64748b';
+  ctx.fillText('Low', cx - r * 0.75, cy + 14);
+  ctx.fillText('High', cx + r * 0.75, cy + 14);
+}
+
+function animateGauge(canvas, targetPct, color) {
+  if (gaugeAnimRAF) cancelAnimationFrame(gaugeAnimRAF);
+  let current = 0;
+  const duration = 1600;
+  const start = performance.now();
+
+  function step(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    // ease-out cubic
+    const eased = 1 - Math.pow(1 - progress, 3);
+    current = eased * targetPct;
+    drawGauge(canvas, current, color);
+    if (progress < 1) gaugeAnimRAF = requestAnimationFrame(step);
+  }
+  gaugeAnimRAF = requestAnimationFrame(step);
+}
+
+function animateRiskBars(factors, score) {
+  const barData = [
+    { label: 'Overall Risk',    value: score,                    color: score > 65 ? '#ef4444' : score > 35 ? '#f59e0b' : '#22c55e' },
+    { label: 'Glucose Impact',  value: Math.min(score * 1.1, 100), color: '#6366f1' },
+    { label: 'BMI Factor',      value: Math.min(score * 0.85, 100), color: '#0891b2' },
+    { label: 'Age Factor',      value: Math.min(score * 0.75, 100), color: '#14b8a6' },
+  ];
+
+  const container = document.getElementById('risk-bars');
+  container.innerHTML = barData.map(b => `
+    <div style="margin-bottom:.9rem;">
+      <div style="display:flex;justify-content:space-between;font-size:.8rem;font-weight:600;margin-bottom:.3rem;">
+        <span>${b.label}</span>
+        <span style="color:${b.color}" class="bar-val-${b.label.replace(/ /g,'')}">0%</span>
+      </div>
+      <div style="height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden;">
+        <div class="anim-bar-${b.label.replace(/ /g,'')}"
+             style="height:100%;width:0%;background:${b.color};border-radius:4px;transition:none;"></div>
+      </div>
+    </div>
+  `).join('');
+
+  // animate each bar
+  barData.forEach(b => {
+    const key = b.label.replace(/ /g, '');
+    const barEl = container.querySelector('.anim-bar-' + key);
+    const valEl = container.querySelector('.bar-val-' + key);
+    const start = performance.now();
+    const dur   = 1400 + Math.random() * 400;
+    function step(now) {
+      const t = Math.min((now - start) / dur, 1);
+      const e = 1 - Math.pow(1 - t, 3);
+      const v = e * b.value;
+      if (barEl) barEl.style.width = v + '%';
+      if (valEl) valEl.textContent = Math.round(v) + '%';
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+}
+
+async function assessRisk() {
+  const age = document.getElementById('age').value;
+  const glucose = document.getElementById('glucose').value;
+  const hba1c = document.getElementById('hba1c').value;
+  const bmi = document.getElementById('bmi').value;
+  if (!age || !glucose || !hba1c || !bmi) { alert('Please fill in all required fields.'); return; }
+
+  document.getElementById('assess-loading').classList.add('show');
+  document.getElementById('risk-result').style.display = 'none';
+
+  const resp = await fetch('/predict_diabetes', {
+    method: 'POST', headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ age, glucose, hba1c, bmi, hypertension: selectedHyp==='yes'?1:0, heart_disease: selectedHd==='yes'?1:0 })
+  });
+  const d = await resp.json();
+  document.getElementById('assess-loading').classList.remove('show');
+
+  const res = document.getElementById('risk-result');
+  res.style.display = 'block';
+
+  // ── Animate gauge ──
+  const canvas = document.getElementById('riskGaugeCanvas');
+  animateGauge(canvas, d.risk_score, d.color);
+  document.getElementById('gauge-label').textContent = d.risk_level;
+  document.getElementById('gauge-label').style.color = d.color;
+
+  // ── Animate bars ──
+  animateRiskBars(d.risk_factors || [], d.risk_score);
+
+  // ── Detail text ──
+  const factors = (d.risk_factors || []).map(f => `<li style="margin:.3rem 0;font-size:.85rem;">⚠️ ${f}</li>`).join('');
+  res.querySelector('#risk-result-content').innerHTML = `
+    <div style="font-size:.82rem;color:var(--muted);margin-bottom:.75rem;">
+      ML Ensemble &nbsp;•&nbsp; ${d.dataset_size ? d.dataset_size.toLocaleString() : '–'} patient records &nbsp;•&nbsp; ${d.model_accuracy}% accuracy
+    </div>
+    ${factors ? `<ul style="padding-left:.5rem;margin-bottom:1rem;">${factors}</ul>` : ''}
+    <div style="padding:.75rem 1rem;background:#f0fdf9;border-radius:10px;border-left:4px solid var(--teal);margin-bottom:1rem;">
+      <strong>Recommended Context:</strong> ${d.diabetes_type === 'type2' ? 'Type 2' : 'Type 1'} Diabetes<br>
+      <span style="font-size:.82rem;color:var(--muted)">${d.recommendation}</span>
+    </div>
+    <button class="btn btn-primary btn-sm" onclick="showSection('meals');document.getElementById('meal-dtype').value='${d.diabetes_type}';getMealPlan()">
+      Get Personalised Meal Plan →
+    </button>
+  `;
+}
+
+function clearAssess() {
+  ['age','glucose','hba1c','bmi'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('risk-result').style.display = 'none';
+  selectRadio('hyp','no'); selectRadio('hd','no');
+  if (gaugeAnimRAF) cancelAnimationFrame(gaugeAnimRAF);
+}
+
+// ── MEAL PLAN ─────────────────────────────────────────────────
+async function getMealPlan() {
+  document.getElementById('meal-loading').classList.add('show');
+  document.getElementById('meal-result').innerHTML = '';
+  const dtype    = document.getElementById('meal-dtype').value;
+  const glucose  = document.getElementById('meal-glucose').value || 130;
+  const mealTime = document.getElementById('meal-time').value;
+
+  let d;
+  try {
+    const resp = await fetch('/get_meal_plan', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({diabetes_type: dtype, glucose_level: glucose, meal_time: mealTime})
+    });
+    if (!resp.ok) throw new Error('Server error ' + resp.status);
+    d = await resp.json();
+  } catch(err) {
+    document.getElementById('meal-loading').classList.remove('show');
+    document.getElementById('meal-result').innerHTML =
+      `<div class="info-box warning">⚠️ Could not load meal plan: ${err.message}</div>`;
+    return;
+  }
+  document.getElementById('meal-loading').classList.remove('show');
+
+  if (!d || !d.meal_plan) {
+    document.getElementById('meal-result').innerHTML =
+      `<div class="info-box warning">⚠️ No meal plan data returned from server.</div>`;
+    return;
+  }
+
+  const icons = {breakfast:'🌅', lunch:'☀️', dinner:'🌙', snacks:'🍎'};
+
+  function giBadgeClass(giRating) {
+    const g = (giRating || '').toLowerCase();
+    if (g === 'low')    return 'badge-low';
+    if (g === 'medium') return 'badge-med';
+    if (g === 'high')   return 'badge-high';
+    return 'badge-low';
+  }
+
+  let html = `<div class="card fade-up">
+    <div class="card-title">
+      <div class="icon">📋</div>
+      Meal Plan – ${dtype === 'type1' ? 'Type 1' : 'Type 2'} Diabetes
+      <span style="margin-left:auto;font-size:.75rem;color:var(--muted)">
+        Glucose: ${d.glucose_range || 'normal'} range
+      </span>
+    </div>`;
+
+  let anyMeals = false;
+  for (const [time, meals] of Object.entries(d.meal_plan)) {
+    if (!Array.isArray(meals) || meals.length === 0) continue;
+    anyMeals = true;
+
+    html += `<div class="meal-section">
+      <div class="meal-section-title">${icons[time]||'🍴'} ${time.charAt(0).toUpperCase()+time.slice(1)}</div>
+      <div class="meal-cards-row">`;
+
+    meals.forEach(m => {
+      // FIX 1: m.meal_name — backend sends 'meal_name', old code read 'm.name' (undefined)
+      const mealName  = m.meal_name || m.name || 'Unnamed Meal';
+
+      // FIX 2: lowercase GI comparison — backend sends 'low'/'medium'/'high'
+      // old code compared against 'Low'/'Medium'/'High' → badge class never matched
+      const giRating  = (m.gi_rating || 'low').toLowerCase();
+      const badgeCls  = giBadgeClass(giRating);
+      const giLabel   = giRating.charAt(0).toUpperCase() + giRating.slice(1);
+      const giIcon    = m.gi_icon || (giRating==='low'?'🟢':giRating==='medium'?'🟡':'🔴');
+
+      // FIX 3: guard numeric fields against null/undefined
+      const calories  = m.total_calories != null ? Math.round(m.total_calories) : '—';
+      const carbs     = m.total_carbs    != null ? m.total_carbs    : '—';
+      const reason    = m.reason       || '';
+      const foodsDisp = m.foods_display || '';
+
+      html += `<div class="meal-card">
+        <h4>${mealName}</h4>
+        <p>${reason}</p>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem;">
+          <span class="meal-badge ${badgeCls}">${giIcon} ${giLabel} GI</span>
+          <span class="meal-badge badge-low">~${calories} kcal</span>
+          ${carbs !== '—' ? `<span class="meal-badge badge-low">${carbs}g carbs</span>` : ''}
+        </div>
+        ${foodsDisp ? `<p style="font-size:.75rem;color:var(--muted);margin-top:.4rem">${foodsDisp}</p>` : ''}
+      </div>`;
+    });
+    html += '</div></div>';
+  }
+
+  if (!anyMeals) {
+    html += `<div class="info-box warning">
+      ⚠️ No meal plans found. Try a different meal time or diabetes type.
+    </div>`;
+  }
+
+  const avoidList = Array.isArray(d.foods_to_avoid) ? d.foods_to_avoid : [];
+  if (avoidList.length) {
+    html += `<div style="margin-top:1.5rem;">
+      <div style="font-size:.9rem;font-weight:700;color:var(--red);margin-bottom:.5rem;">🚫 Foods to Avoid</div>
+      <div class="avoid-list">${avoidList.map(f=>`<span class="avoid-tag">${f}</span>`).join('')}</div>
+    </div>`;
+  }
+  html += '</div>';
+
+  document.getElementById('meal-result').innerHTML = html;
+}
+
+// ── FOOD ANALYZER ─────────────────────────────────────────────
+function showFoodSuggestions(val) {
+  const box = document.getElementById('food-suggestions');
+  if(!val || val.length < 2) { box.style.display = 'none'; return; }
+  const matches = FOODS.filter(f => f.replace(/_/g,' ').includes(val.toLowerCase())).slice(0,8);
+  if(!matches.length) { box.style.display = 'none'; return; }
+  box.innerHTML = matches.map(f =>
+    `<div class="food-suggestion-item" onclick="selectFood('${f}')">${f.replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase())}</div>`
+  ).join('');
+  box.style.display = 'block';
+}
+function selectFood(f) {
+  document.getElementById('food-name').value = f.replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+  document.getElementById('food-suggestions').style.display = 'none';
+}
+document.addEventListener('click', e => {
+  if(!e.target.closest('.food-search-wrap')) document.getElementById('food-suggestions').style.display='none';
+});
+
+async function analyzeFood() {
+  const name = document.getElementById('food-name').value;
+  const portion = document.getElementById('portion').value || 100;
+  const dtype = document.getElementById('analyze-dtype').value;
+  if(!name) { alert('Please enter a food name'); return; }
+
+  document.getElementById('analyze-loading').classList.add('show');
+  document.getElementById('analyze-result').style.display = 'none';
+
+  const resp = await fetch('/analyze_food', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({food_name: name, portion_g: parseFloat(portion), diabetes_type: dtype})
+  });
+  const d = await resp.json();
+  document.getElementById('analyze-loading').classList.remove('show');
+
+  const res = document.getElementById('analyze-result');
+  res.style.display = 'block';
+  res.innerHTML = `
+    <div class="card-title"><div class="icon">📊</div> ${d.food} — Nutrition Analysis (${d.portion_g}g)</div>
+    <div style="padding:.75rem 1rem;border-radius:12px;border-left:4px solid ${d.suitability_color};background:${d.suitability_color}15;margin-bottom:1rem;">
+      <strong>${d.suitability}</strong><br>
+      <span style="font-size:.85rem;color:var(--muted)">${d.advice}</span>
+    </div>
+    <div class="nutrition-grid">
+      <div class="nutrition-item"><div class="val">${d.calories}</div><div class="lbl">Calories (kcal)</div></div>
+      <div class="nutrition-item"><div class="val">${d.glucose_impact}</div><div class="lbl">Glucose Impact (g)</div></div>
+      <div class="nutrition-item"><div class="val">${d.carbs}g</div><div class="lbl">Carbohydrates</div></div>
+      <div class="nutrition-item"><div class="val">${d.protein}g</div><div class="lbl">Protein</div></div>
+      <div class="nutrition-item"><div class="val">${d.fat}g</div><div class="lbl">Fat</div></div>
+      <div class="nutrition-item"><div class="val">${d.fiber}g</div><div class="lbl">Fiber</div></div>
+    </div>
+    <div style="margin-top:1rem;font-size:.8rem;color:var(--muted)">
+      Glycemic Index: <strong>${d.gi.toUpperCase()}</strong> ${!d.found ? ' · Estimated values (food not in database)' : ''}
+    </div>
+  `;
+}
+
+// ── PHOTO ANALYSIS ────────────────────────────────────────────
+function previewImage(input) {
+  const file = input.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = document.getElementById('preview-img');
+    img.src = e.target.result;
+    img.style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+async function analyzePhoto() {
+  const file = document.getElementById('food-image').files[0];
+  if(!file) { alert('Please upload a food photo first.'); return; }
+  const dtype = document.getElementById('photo-dtype').value;
+
+  document.getElementById('photo-loading').classList.add('show');
+  document.getElementById('photo-result').style.display = 'none';
+
+  // Convert to base64
+  const base64 = await new Promise(res => {
+    const r = new FileReader();
+    r.onload = e => res(e.target.result.split(',')[1]);
+    r.readAsDataURL(file);
+  });
+
+  const resp = await fetch('/analyze_image', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({image_data: base64, diabetes_type: dtype})
+  });
+  const d = await resp.json();
+  document.getElementById('photo-loading').classList.remove('show');
+
+  const confColor = d.confidence==='high' ? 'var(--green)' : d.confidence==='medium' ? 'var(--amber)' : 'var(--muted)';
+  const res = document.getElementById('photo-result');
+  res.style.display = 'block';
+  res.innerHTML = `
+    <div class="card-title"><div class="icon">🔍</div> Photo Analysis Result</div>
+    <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;flex-wrap:wrap;">
+      <div style="font-size:1.2rem;font-weight:800">${d.detected_food}</div>
+      <span style="background:${confColor}22;color:${confColor};padding:.2rem .75rem;border-radius:20px;font-size:.78rem;font-weight:700;">
+        ${d.confidence} confidence
+      </span>
+      ${d.note ? `<span style="font-size:.78rem;color:var(--muted)">${d.note}</span>` : ''}
+    </div>
+    <div class="nutrition-grid">
+      <div class="nutrition-item"><div class="val">${d.calories}</div><div class="lbl">Calories (kcal)</div></div>
+      <div class="nutrition-item"><div class="val">${d.glucose_impact}</div><div class="lbl">Glucose Impact (g)</div></div>
+      <div class="nutrition-item"><div class="val">${d.carbs}g</div><div class="lbl">Carbs</div></div>
+      <div class="nutrition-item"><div class="val">${d.protein}g</div><div class="lbl">Protein</div></div>
+      <div class="nutrition-item"><div class="val">${d.fat}g</div><div class="lbl">Fat</div></div>
+      <div class="nutrition-item"><div class="val">${d.fiber}g</div><div class="lbl">Fiber</div></div>
+    </div>
+    <div style="margin-top:1rem;">
+      <button class="btn btn-secondary btn-sm" onclick="showSection('meals')">Get Meal Plan for ${dtype==='type1'?'Type 1':'Type 2'} →</button>
+    </div>
+  `;
+}
+
+// ── AI CHAT ──────────────────────────────────────────────────
+// Only real user/assistant turns go here — never the greeting
+const chatHistory = [];
+
+function quickChat(text) {
+  document.getElementById('chat-input').value = text;
+  sendChat();
+}
+
+async function sendChat() {
+  const input = document.getElementById('chat-input');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+
+  const chat = document.getElementById('chat-messages');
+  chat.innerHTML += `<div class="chat-msg user"><div class="chat-bubble">${msg}</div></div>`;
+  chat.innerHTML += `<div class="chat-msg bot" id="typing"><div class="chat-bubble"><div class="spinner" style="width:18px;height:18px;border-width:2px;margin:0"></div></div></div>`;
+  chat.scrollTop = chat.scrollHeight;
+
+  // Build a clean, strictly-alternating history (user → assistant → user …)
+  // The Anthropic API requires messages must alternate roles and start with "user"
+  const cleanHistory = chatHistory.filter((_, i) =>
+    i === 0 ? chatHistory[i].role === 'user' : chatHistory[i].role !== chatHistory[i-1].role
+  );
+
+  try {
+    const resp = await fetch('/chat', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ message: msg, history: cleanHistory })
+    });
+    const data = await resp.json();
+    if (data.error) throw new Error(data.error);
+
+    const reply = data.reply;
+    // Save this turn to history only after success
+    chatHistory.push({ role: 'user',      content: msg   });
+    chatHistory.push({ role: 'assistant', content: reply });
+
+    document.getElementById('typing').outerHTML =
+      `<div class="chat-msg bot"><div class="chat-bubble">${reply.replace(/\n/g, '<br>')}</div></div>`;
+  } catch (e) {
+    document.getElementById('typing').outerHTML =
+      `<div class="chat-msg bot"><div class="chat-bubble">⚠️ ${e.message}</div></div>`;
+  }
+  chat.scrollTop = chat.scrollHeight;
+}
+
+// ── NUTRITION CALCULATOR ──────────────────────────────────────
+function setCalcExample(txt) {
+  document.getElementById('calc-input').value = txt;
+}
+
+async function calcNutrition() {
+  const meal = document.getElementById('calc-input').value.trim();
+  if (!meal) { alert('Please describe your meal first.'); return; }
+  document.getElementById('calc-loading').classList.add('show');
+  document.getElementById('calc-result').style.display = 'none';
+
+  // Try chatbot calc endpoint first
+  const resp = await fetch('/nutrition_calc', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({meal_text: meal})
+  });
+  const d = await resp.json();
+  document.getElementById('calc-loading').classList.remove('show');
+
+  if (d.error) {
+    document.getElementById('calc-result').style.display = 'block';
+    document.getElementById('calc-result').innerHTML = `<p style="color:var(--red)">⚠️ ${d.error} — try being more specific, e.g. "2 chapati + 1 cup dal"</p>`;
+    return;
+  }
+
+  const breakdown = d.breakdown.map(r =>
+    `<tr>
+      <td style="padding:.5rem .75rem;font-weight:600">${r.food}</td>
+      <td style="padding:.5rem .75rem;color:var(--muted)">${r.grams}g</td>
+      <td style="padding:.5rem .75rem">${r.cal}</td>
+      <td style="padding:.5rem .75rem">${r.glc}</td>
+      <td style="padding:.5rem .75rem">${r.carb}</td>
+      <td style="padding:.5rem .75rem">${r.pro}</td>
+      <td style="padding:.5rem .75rem">${r.fat}</td>
+      <td style="padding:.5rem .75rem">${r.fib}</td>
+    </tr>`).join('');
+
+  const t = d.totals;
+  const glcWarn = t.glc > 60 ? '<span style="color:var(--red)">⚠️ High glucose load</span>' :
+                  t.glc > 35 ? '<span style="color:var(--amber)">⚠️ Moderate glucose load</span>' :
+                               '<span style="color:var(--green)">✅ Safe glucose load</span>';
+
+  const res = document.getElementById('calc-result');
+  res.style.display = 'block';
+  res.innerHTML = `
+    <div class="card-title"><div class="icon">🧮</div> Meal Nutrition Breakdown (${d.items_found} food${d.items_found>1?'s':''})</div>
+    <div style="overflow-x:auto;margin-bottom:1.5rem;">
+      <table style="width:100%;border-collapse:collapse;font-size:.85rem;">
+        <thead>
+          <tr style="background:var(--bg);">
+            <th style="padding:.5rem .75rem;text-align:left;font-size:.75rem;color:var(--muted);text-transform:uppercase">Food</th>
+            <th style="padding:.5rem .75rem;text-align:left;font-size:.75rem;color:var(--muted)">Portion</th>
+            <th style="padding:.5rem .75rem;text-align:left;font-size:.75rem;color:var(--muted)">Cal</th>
+            <th style="padding:.5rem .75rem;text-align:left;font-size:.75rem;color:var(--muted)">Glucose</th>
+            <th style="padding:.5rem .75rem;text-align:left;font-size:.75rem;color:var(--muted)">Carbs</th>
+            <th style="padding:.5rem .75rem;text-align:left;font-size:.75rem;color:var(--muted)">Protein</th>
+            <th style="padding:.5rem .75rem;text-align:left;font-size:.75rem;color:var(--muted)">Fat</th>
+            <th style="padding:.5rem .75rem;text-align:left;font-size:.75rem;color:var(--muted)">Fiber</th>
+          </tr>
+        </thead>
+        <tbody>${breakdown}</tbody>
+        <tfoot>
+          <tr style="background:var(--bg);font-weight:800;border-top:2px solid var(--border);">
+            <td style="padding:.65rem .75rem">TOTAL</td>
+            <td style="padding:.65rem .75rem">—</td>
+            <td style="padding:.65rem .75rem;color:var(--teal)">${t.cal}</td>
+            <td style="padding:.65rem .75rem;color:var(--teal)">${t.glc}</td>
+            <td style="padding:.65rem .75rem;color:var(--teal)">${t.carb}</td>
+            <td style="padding:.65rem .75rem;color:var(--teal)">${t.pro}</td>
+            <td style="padding:.65rem .75rem;color:var(--teal)">${t.fat}</td>
+            <td style="padding:.65rem .75rem;color:var(--teal)">${t.fib}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="nutrition-grid">
+      <div class="nutrition-item"><div class="val">${t.cal}</div><div class="lbl">Total Calories</div></div>
+      <div class="nutrition-item"><div class="val">${t.glc}g</div><div class="lbl">Glucose Impact ${glcWarn}</div></div>
+      <div class="nutrition-item"><div class="val">${t.carb}g</div><div class="lbl">Carbohydrates</div></div>
+      <div class="nutrition-item"><div class="val">${t.pro}g</div><div class="lbl">Protein</div></div>
+      <div class="nutrition-item"><div class="val">${t.fat}g</div><div class="lbl">Fat</div></div>
+      <div class="nutrition-item"><div class="val">${t.fib}g</div><div class="lbl">Fiber</div></div>
+    </div>
+    <div style="margin-top:1rem;">
+      <button class="btn btn-secondary btn-sm" onclick="quickChat('calculate: ${meal}');showSection('chat')">💬 Ask AI about this meal →</button>
+    </div>
+  `;
+}
+
+
+// ══════════════════════════════════════════════════════════════
+// AI NUTRITION ASSISTANT — Structured Response Engine
+// ══════════════════════════════════════════════════════════════
+const AI_HISTORY = [];
+
+const AI_FOOD_WORDS = /food|eat|diet|meal|nutrition|glucose|sugar|blood sugar|safe|good for|avoid|diabetes|diabetic|gi |glycemic|low gi|high gi|snack|drink|juice|vegetable|fruit|grain|dal|rice|roti|idli|dosa|sambar|ragi|oats|breakfast|lunch|dinner|chapati|south indian|indian|calorie|carb|protein|fat|fiber|portion|serving|hba1c|a1c|insulin|type 1|type 2|mango|banana|bitter|drumstick|fenugreek|methi|almond|oat|lentil/i;
+
+function aiIsRelevant(msg) {
+  return AI_FOOD_WORDS.test(msg);
+}
+
+function aiAppendUserMsg(text) {
+  const chat = document.getElementById('ai-chat');
+  const row = document.createElement('div');
+  row.style.cssText = 'display:flex;gap:10px;align-items:flex-start;flex-direction:row-reverse';
+  row.innerHTML = `
+    <div style="width:30px;height:30px;border-radius:50%;background:#e0f2fe;color:#0369a1;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0">You</div>
+    <div style="background:linear-gradient(135deg,#0d9488,#0891b2);color:#fff;border-radius:14px 0 14px 14px;padding:.7rem 1rem;max-width:80%;font-size:.88rem;line-height:1.6">${escAI(text)}</div>
+  `;
+  chat.appendChild(row);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function aiAppendThinking() {
+  const chat = document.getElementById('ai-chat');
+  const row = document.createElement('div');
+  row.id = 'ai-thinking';
+  row.style.cssText = 'display:flex;gap:10px;align-items:flex-start';
+  row.innerHTML = `
+    <div style="width:30px;height:30px;border-radius:50%;background:#d1fae5;color:#065f46;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0">AI</div>
+    <div class="ai-response-card" style="padding:.65rem 1rem;border-radius:0 14px 14px 14px">
+      <div class="ai-thinking-dots">
+        <div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div>
+      </div>
+    </div>
+  `;
+  chat.appendChild(row);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function aiRemoveThinking() {
+  const el = document.getElementById('ai-thinking');
+  if (el) el.remove();
+}
+
+function aiAppendStructured(data) {
+  const chat = document.getElementById('ai-chat');
+  const row  = document.createElement('div');
+  row.style.cssText = 'display:flex;gap:10px;align-items:flex-start';
+
+  const gi     = (data.gi || 'na').toLowerCase();
+  const rec    = (data.rec || 'info').toLowerCase();
+  const giLabel= gi === 'na' ? 'Not applicable' : gi.charAt(0).toUpperCase() + gi.slice(1);
+  const recMap = { safe:'Safe ✅', moderate:'Moderate ⚠️', avoid:'Avoid ❌', info:'Informational' };
+  const giVal  = data.gi_value ? ` (${data.gi_value})` : '';
+
+  const giEffect = gi === 'low'    ? 'Raises blood sugar slowly — generally safe.'
+                 : gi === 'medium' ? 'Moderate rise — control portions carefully.'
+                 : gi === 'high'   ? 'Rapid glucose spike — limit or avoid.'
+                 : '';
+
+  row.innerHTML = `
+    <div style="width:30px;height:30px;border-radius:50%;background:#d1fae5;color:#065f46;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0">AI</div>
+    <div class="ai-response-card">
+      <div class="ai-rc-topic">🍽️ ${escAI(data.topic || 'Response')}</div>
+
+      <div class="ai-rc-section">
+        <div class="ai-rc-label">📌 Answer</div>
+        <div class="ai-rc-text">${escAI(data.answer || '')}</div>
+      </div>
+
+      <div class="ai-rc-section">
+        <div class="ai-rc-label">📊 Glycemic impact</div>
+        <div class="ai-gi-row">
+          <span class="ai-pill ai-pill-${gi}">GI: ${giLabel}${giVal}</span>
+          ${giEffect ? `<span style="font-size:.75rem;color:var(--muted)">${giEffect}</span>` : ''}
+        </div>
+      </div>
+
+      <div class="ai-rc-section">
+        <div class="ai-rc-label">⚖️ Recommendation</div>
+        <div class="ai-gi-row">
+          <span class="ai-pill ai-pill-${rec}">${recMap[rec] || rec}</span>
+        </div>
+        ${data.portion ? `<div class="ai-rc-text" style="margin-top:.35rem;font-size:.82rem">${escAI(data.portion)}</div>` : ''}
+      </div>
+
+      ${data.tip ? `<div class="ai-tip">💡 ${escAI(data.tip)}</div>` : ''}
+    </div>
+  `;
+  chat.appendChild(row);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function aiAppendScopeError() {
+  const chat = document.getElementById('ai-chat');
+  const row  = document.createElement('div');
+  row.style.cssText = 'display:flex;gap:10px;align-items:flex-start';
+  row.innerHTML = `
+    <div style="width:30px;height:30px;border-radius:50%;background:#d1fae5;color:#065f46;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0">AI</div>
+    <div class="ai-scope-msg">🚫 I can only help with diabetes, nutrition, and food-related questions.<br>
+    Try asking about a food (e.g. "Is idli good for diabetes?") or a meal planning topic.</div>
+  `;
+  chat.appendChild(row);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function aiAppendFallback(text) {
+  const chat = document.getElementById('ai-chat');
+  const row  = document.createElement('div');
+  row.style.cssText = 'display:flex;gap:10px;align-items:flex-start';
+  row.innerHTML = `
+    <div style="width:30px;height:30px;border-radius:50%;background:#d1fae5;color:#065f46;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0">AI</div>
+    <div class="ai-response-card" style="padding:.75rem 1rem;border-radius:0 14px 14px 14px">
+      <div style="font-size:.85rem;line-height:1.6;color:var(--text)">${text.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>')}</div>
+    </div>
+  `;
+  chat.appendChild(row);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function escAI(str) {
+  return String(str || '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+function aiAsk(text) {
+  document.getElementById('ai-input').value = text;
+  aiSend();
+}
+
+async function aiSend() {
+  const input = document.getElementById('ai-input');
+  const msg   = (input.value || '').trim();
+  if (!msg) return;
+  input.value = '';
+
+  const btn = document.getElementById('ai-send-btn');
+  btn.disabled = true;
+
+  // Scope check — client side first for speed
+  if (!aiIsRelevant(msg)) {
+    aiAppendUserMsg(msg);
+    aiAppendScopeError();
+    btn.disabled = false;
+    return;
+  }
+
+  aiAppendUserMsg(msg);
+  aiAppendThinking();
+
+  try {
+    const resp = await fetch('/chat_structured', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ message: msg, history: AI_HISTORY }),
+    });
+
+    if (!resp.ok) throw new Error('Server error ' + resp.status);
+    const d = await resp.json();
+
+    aiRemoveThinking();
+
+    if (d.out_of_scope) {
+      aiAppendScopeError();
+    } else if (d.structured && d.topic) {
+      aiAppendStructured(d);
+      AI_HISTORY.push({ role: 'user',      content: msg });
+      AI_HISTORY.push({ role: 'assistant', content: d.answer || '' });
+      if (AI_HISTORY.length > 16) AI_HISTORY.splice(0, 2);
+    } else if (d.reply) {
+      aiAppendFallback(d.reply);
+      AI_HISTORY.push({ role: 'user',      content: msg });
+      AI_HISTORY.push({ role: 'assistant', content: d.reply });
+      if (AI_HISTORY.length > 16) AI_HISTORY.splice(0, 2);
+    } else {
+      aiAppendFallback('I am not fully sure. Please try asking about a specific food or diabetes topic.');
+    }
+  } catch (err) {
+    aiRemoveThinking();
+    aiAppendFallback('⚠️ Could not connect to server. Please check the Flask app is running.');
+  }
+  btn.disabled = false;
+  input.focus();
+}
+
+</script>
+</body>
+</html>

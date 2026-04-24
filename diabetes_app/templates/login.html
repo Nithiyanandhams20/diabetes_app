@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiabetesMeal AI – Login / Register</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:  #0d9488;
+  --teal2: #14b8a6;
+  --green: #22c55e;
+  --red:   #ef4444;
+  --bg:    #f0fdf9;
+  --card:  #ffffff;
+  --border:#d1fae5;
+  --text:  #0f172a;
+  --muted: #64748b;
+  --grad:  linear-gradient(135deg,#0d9488 0%,#0891b2 100%);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+
+/* ── HEADER ── */
+header{background:var(--grad);padding:0 2rem;height:64px;display:flex;align-items:center;gap:.6rem;box-shadow:0 4px 20px rgba(13,148,136,.3)}
+.brand-icon{width:36px;height:36px;background:rgba(255,255,255,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+header span{font-size:1.2rem;font-weight:800;color:#fff;letter-spacing:-.5px}
+
+/* ── HERO STRIP ── */
+.hero-strip{background:var(--grad);padding:2.5rem 2rem 5rem;text-align:center;position:relative;overflow:hidden}
+.hero-strip::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:60px;background:var(--bg);clip-path:ellipse(55% 100% at 50% 100%)}
+.hero-strip h1{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;margin-bottom:.6rem}
+.hero-strip h1 em{font-style:italic;color:#a7f3d0}
+.hero-strip p{color:rgba(255,255,255,.8);font-size:.95rem;max-width:480px;margin:0 auto}
+
+/* ── CARD ── */
+.wrapper{max-width:520px;margin:-2rem auto 4rem;padding:0 1.5rem;position:relative;z-index:1}
+.card{background:var(--card);border-radius:24px;padding:2.5rem;border:1px solid var(--border);box-shadow:0 8px 40px rgba(13,148,136,.1)}
+.tabs{display:flex;background:#f1f5f9;border-radius:14px;padding:4px;margin-bottom:2rem}
+.tab-btn{flex:1;padding:.6rem;border:none;background:none;font-family:inherit;font-size:.9rem;font-weight:600;color:var(--muted);border-radius:10px;cursor:pointer;transition:all .25s}
+.tab-btn.active{background:#fff;color:var(--teal);box-shadow:0 2px 8px rgba(13,148,136,.15)}
+
+/* ── FORM ── */
+.form-section{display:none}.form-section.active{display:block}
+.form-group{margin-bottom:1.1rem}
+.form-group label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.4rem}
+.form-group input,.form-group select{width:100%;padding:.72rem 1rem;border:2px solid #e2e8f0;border-radius:12px;font-size:.95rem;font-family:inherit;color:var(--text);transition:border .2s;background:#fff}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--teal)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.btn-primary{width:100%;padding:.82rem;background:var(--grad);color:#fff;border:none;border-radius:12px;font-size:1rem;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 4px 15px rgba(13,148,136,.3);transition:all .2s;margin-top:.5rem}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(13,148,136,.4)}
+.divider{display:flex;align-items:center;gap:.75rem;margin:1.2rem 0;color:var(--muted);font-size:.82rem}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:#e2e8f0}
+
+/* ── ALERTS ── */
+.alert{padding:.8rem 1rem;border-radius:10px;font-size:.88rem;font-weight:600;margin-bottom:1rem;display:none}
+.alert.error{background:#fef2f2;color:#b91c1c;border:1px solid #fecaca;display:block}
+.alert.success{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;display:block}
+
+/* ── INFO CHIPS ── */
+.info-chips{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:2rem;justify-content:center}
+.chip{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:.3rem .8rem;border-radius:20px;color:#fff;font-size:.78rem;font-weight:600}
+.chip span{color:#a7f3d0}
+
+/* ── SPINNER ── */
+.spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:inline-block;vertical-align:middle;margin-right:.4rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading{display:none;text-align:center;color:var(--muted);font-size:.88rem;padding:.5rem}
+.loading.show{display:block}
+
+/* ── FOOTER NOTE ── */
+.note{text-align:center;font-size:.8rem;color:var(--muted);margin-top:1.5rem;line-height:1.6}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand-icon">🩺</div>
+  <span>DiabetesMeal AI</span>
+</header>
+
+<div class="hero-strip">
+  <h1>Your <em>Smart</em> Diabetes<br>Nutrition Partner</h1>
+  <p>AI-powered meal guidance &amp; risk assessment personalised to your health profile.</p>
+  <div class="info-chips">
+    <div class="chip"><span>97%</span> ML Accuracy</div>
+    <div class="chip"><span>100K+</span> Patient Records</div>
+    <div class="chip"><span>96</span> Indian Foods</div>
+    <div class="chip"><span>23</span> Meal Plans</div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="card">
+
+    <!-- Tab switcher -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('login')">🔐 Sign In</button>
+      <button class="tab-btn" onclick="switchTab('register')">📝 Register</button>
+    </div>
+
+    <!-- Flash messages from server -->
+    {% if error %}
+      <div class="alert error">⚠️ {{ error }}</div>
+    {% endif %}
+    {% if success %}
+      <div class="alert success">✅ {{ success }}</div>
+    {% endif %}
+
+    <!-- JS alert placeholder -->
+    <div class="alert" id="js-alert"></div>
+
+    <!-- ── LOGIN FORM ── -->
+    <div class="form-section active" id="form-login">
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="login-email" placeholder="your@email.com" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="login-password" placeholder="Enter password" autocomplete="current-password">
+      </div>
+      <button class="btn-primary" onclick="doLogin()">Sign In to Dashboard →</button>
+      <div class="loading" id="login-loading"><div class="spinner"></div> Signing in…</div>
+      <div class="divider">or</div>
+      <p style="text-align:center;font-size:.88rem;color:var(--muted)">
+        New patient? <a href="#" onclick="switchTab('register');return false" style="color:var(--teal);font-weight:700">Create an account →</a>
+      </p>
+    </div>
+
+    <!-- ── REGISTER FORM ── -->
+    <div class="form-section" id="form-register">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="reg-name" placeholder="e.g. Priya Sharma">
+        </div>
+        <div class="form-group">
+          <label>Gender</label>
+          <select id="reg-gender">
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address *</label>
+        <input type="email" id="reg-email" placeholder="your@email.com" autocomplete="email">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="reg-phone" placeholder="+91 9876543210">
+        </div>
+        <div class="form-group">
+          <label>Date of Birth</label>
+          <input type="date" id="reg-dob">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Password *</label>
+        <input type="password" id="reg-password" placeholder="Min. 6 characters" autocomplete="new-password">
+      </div>
+      <div class="form-group">
+        <label>Confirm Password *</label>
+        <input type="password" id="reg-confirm" placeholder="Repeat password" autocomplete="new-password">
+      </div>
+      <button class="btn-primary" onclick="doRegister()">Create Patient Account →</button>
+      <div class="loading" id="register-loading"><div class="spinner"></div> Creating account…</div>
+      <div class="divider">or</div>
+      <p style="text-align:center;font-size:.88rem;color:var(--muted)">
+        Already registered? <a href="#" onclick="switchTab('login');return false" style="color:var(--teal);font-weight:700">Sign in →</a>
+      </p>
+    </div>
+
+  </div>
+  <p class="note">🔒 Your data is stored securely and used only for personalised diabetes management.<br>No data is shared with third parties.</p>
+</div>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', (tab==='login'?i===0:i===1)));
+  document.getElementById('form-login').classList.toggle('active', tab==='login');
+  document.getElementById('form-register').classList.toggle('active', tab==='register');
+  clearAlert();
+}
+
+function showAlert(msg, type='error') {
+  const el = document.getElementById('js-alert');
+  el.textContent = (type==='error'?'⚠️ ':'✅ ') + msg;
+  el.className = 'alert ' + type;
+}
+function clearAlert() {
+  const el = document.getElementById('js-alert');
+  el.className = 'alert';
+  el.textContent = '';
+}
+
+async function doLogin() {
+  const email    = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
+  if (!email || !password) { showAlert('Please enter email and password.'); return; }
+
+  document.getElementById('login-loading').classList.add('show');
+  clearAlert();
+
+  try {
+    const resp = await fetch('/auth/login', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ email, password })
+    });
+    const d = await resp.json();
+    document.getElementById('login-loading').classList.remove('show');
+
+    if (d.success) {
+      showAlert('Login successful! Redirecting…', 'success');
+      setTimeout(() => window.location.href = '/', 800);
+    } else {
+      showAlert(d.error || 'Invalid email or password.');
+    }
+  } catch(e) {
+    document.getElementById('login-loading').classList.remove('show');
+    showAlert('Network error. Please try again.');
+  }
+}
+
+async function doRegister() {
+  const name     = document.getElementById('reg-name').value.trim();
+  const email    = document.getElementById('reg-email').value.trim();
+  const phone    = document.getElementById('reg-phone').value.trim();
+  const dob      = document.getElementById('reg-dob').value;
+  const gender   = document.getElementById('reg-gender').value;
+  const password = document.getElementById('reg-password').value;
+  const confirm  = document.getElementById('reg-confirm').value;
+
+  if (!name || !email || !password) { showAlert('Name, email and password are required.'); return; }
+  if (password.length < 6)          { showAlert('Password must be at least 6 characters.'); return; }
+  if (password !== confirm)          { showAlert('Passwords do not match.'); return; }
+
+  document.getElementById('register-loading').classList.add('show');
+  clearAlert();
+
+  try {
+    const resp = await fetch('/auth/register', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ name, email, phone, dob, gender, password })
+    });
+    const d = await resp.json();
+    document.getElementById('register-loading').classList.remove('show');
+
+    if (d.success) {
+      showAlert('Account created! Signing you in…', 'success');
+      setTimeout(() => window.location.href = '/', 1000);
+    } else {
+      showAlert(d.error || 'Registration failed. Email may already be in use.');
+    }
+  } catch(e) {
+    document.getElementById('register-loading').classList.remove('show');
+    showAlert('Network error. Please try again.');
+  }
+}
+
+// Allow Enter key
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  const loginActive = document.getElementById('form-login').classList.contains('active');
+  if (loginActive) doLogin(); else doRegister();
+});
+</script>
+</body>
+</html>
